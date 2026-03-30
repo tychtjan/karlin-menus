@@ -1,0 +1,19 @@
+{
+  "date": "2026-03-30",
+  "restaurant": "Diego Pivní Bar",
+  "available": true,
+  "soup": {
+    "name": "Krémová fazolová polévka s nachos sýrem a chorrizem",
+    "price": 45
+  },
+  "dishes": [
+    {
+      "name": "Chilli sin carne - fazolová smes s cuketou, kukuřící a tomaty s restovanými žampiony a kešu oříšky, podává se s rýží a nachos",
+      "price": 179
+    },
+    {
+      "name": "Quesadilla beercheese & beef - tortilla plněná hovězím masem, naší beercheese omáčkou ze sýra raclette únětické 12, grilovanou zeleninou a sýrem gouda, podává se s nachos a salsou mexicana",
+      "price": 189
+    }
+  ]
+}

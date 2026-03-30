@@ -1,0 +1,43 @@
+{
+  "date": "2026-03-30",
+  "restaurant": "Pivo Karlín",
+  "available": true,
+  "soup": {
+    "name": "Dršťková polévka s uzenou paprikou a bramborami",
+    "price": 55
+  },
+  "dishes": [
+    {
+      "name": "Fajitas z krůtích prsou, grilovaná zelenina, sour cream, křupavá tortilla",
+      "price": 275
+    },
+    {
+      "name": "4ks Bramborové knedlíky plněné uzeným masem, kysané zelí, restovaná cibule",
+      "price": 204
+    },
+    {
+      "name": "Grilované karé s chimichurri, pečená zelenina a brambory, zakysaná smetana",
+      "price": 205
+    },
+    {
+      "name": "Pečené kuřecí stehno, nádivka s houbami a špenátem, brambory s libečkem",
+      "price": 204
+    },
+    {
+      "name": "VEG Grilované hlávkové zelí, arašídová omáčka, vaječné nudle",
+      "price": 203
+    },
+    {
+      "name": "Steak z kuřecího prsa, sweet and sour omáčka s ananasem, rýže",
+      "price": 199
+    },
+    {
+      "name": "Italský těstovinový salát",
+      "price": 49
+    },
+    {
+      "name": "2ks Palačinka s ostružinovým tvarohem",
+      "price": 59
+    }
+  ]
+}
