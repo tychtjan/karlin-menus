@@ -1,34 +1,34 @@
 {
-  "date": "2026-03-30",
+  "date": "2026-03-31",
   "restaurant": "Pivo Karlín",
   "available": true,
   "soup": {
-    "name": "Dršťková polévka s uzenou paprikou a bramborami",
+    "name": "Frankfurtská s párkem",
     "price": 55
   },
   "dishes": [
     {
-      "name": "Fajitas z krůtích prsou, grilovaná zelenina, sour cream, křupavá tortilla",
+      "name": "Grilovaná telecí Maminha, pečená mrkev s medem a lískovými ořechy, brambory",
       "price": 275
     },
     {
-      "name": "4ks Bramborové knedlíky plněné uzeným masem, kysané zelí, restovaná cibule",
+      "name": "Kuře kung pao se zeleninou a sečuánským chilli, sezamová rýže",
       "price": 204
     },
     {
-      "name": "Grilované karé s chimichurri, pečená zelenina a brambory, zakysaná smetana",
+      "name": "Pečená krkovice na česneku, smetanový špenát, bramborové knedlíky",
       "price": 205
     },
     {
-      "name": "Pečené kuřecí stehno, nádivka s houbami a špenátem, brambory s libečkem",
+      "name": "Smažené vykostěné kuřecí stehno Louisiana, bramborová kaše, coleslaw",
       "price": 204
     },
     {
-      "name": "VEG Grilované hlávkové zelí, arašídová omáčka, vaječné nudle",
+      "name": "VEG Dukátové buchtičky, rumová omáčka, marinované rozinky, strouhaný perník",
       "price": 203
     },
     {
-      "name": "Steak z kuřecího prsa, sweet and sour omáčka s ananasem, rýže",
+      "name": "Sekané biftečky, smetanová omáčka se zeleným pepřem, pečená brambora",
       "price": 199
     },
     {

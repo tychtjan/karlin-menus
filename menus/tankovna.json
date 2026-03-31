@@ -1,42 +1,42 @@
 {
-  "date": "2026-03-30",
+  "date": "2026-03-31",
   "restaurant": "Tankovna Karlín",
   "available": true,
   "soup": {
-    "name": "Bramboračka",
+    "name": "Tomatová S Těstovinou",
     "price": 45
   },
   "dishes": [
     {
-      "name": "Cordon Bleu S Kaší A Rajčatovým Salátkem",
+      "name": "Smažené Žampiony S Vařeným Bramborem A Tatarkou",
+      "price": 179
+    },
+    {
+      "name": "Buřtguláš S Chlebem",
+      "price": 189
+    },
+    {
+      "name": "Kuřecí Kousky S Kořenovou Zeleninou A Rýží",
+      "price": 189
+    },
+    {
+      "name": "Boloňské Špagety S Parmazánem",
+      "price": 189
+    },
+    {
+      "name": "Kuřecí Roláda Plněná Špenátem, Sýrem A Šunkou, Kaše",
       "price": 199
     },
     {
-      "name": "Vepřové Soté S Brokolicí, Cibulkou A Kapií, Rýže",
-      "price": 189
+      "name": "Palačinky S Horkými Malinami A Zmrzlinou",
+      "price": 165
     },
     {
-      "name": "Hovězí Pečeně Na Žampionech S Houskovým Knedlíkem",
-      "price": 219
+      "name": "Grilovaný Steak Z Kotlety, Restovaná Slaninka S Chilli A Šalotkou,    Grenaille",
+      "price": 239
     },
     {
-      "name": "Gnocchi S Lososem, Baby Špenátem, Jemnou Smetanou A Citrónem",
-      "price": 189
-    },
-    {
-      "name": "Krémové Rizoto S Kozím Sýrem, Rukolou A Červenou Řepou",
-      "price": 189
-    },
-    {
-      "name": "Kuřecí Steak Gratinovaný Camembertem, Šťouchaný Brambor, Brusinky",
-      "price": 235
-    },
-    {
-      "name": "Bbq Krkovice S Opečenými Bramborovými Plátky",
-      "price": 219
-    },
-    {
-      "name": "Mix Salátů S Cibulovými Kroužky A Slaninkou",
+      "name": "Variace Salátů S Hruškou A Hermelínem",
       "price": 189
     },
     {
