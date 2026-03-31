@@ -1,0 +1,59 @@
+{
+  "date": "2026-03-31",
+  "restaurant": "Jídlovice Karlín",
+  "available": true,
+  "soup": {
+    "name": "Kuřecí vývar s játrovou rýží, s pečenou zeleninou a libečkem",
+    "price": 59
+  },
+  "dishes": [
+    {
+      "name": "Segedínský guláš, se smetanou a houskovým knedlíkem",
+      "price": 189
+    },
+    {
+      "name": "Balkánské čevabčiči, s pečeným bramborem se zeleninou, okurkovými tzatziki, ajvarem a listy petržele",
+      "price": 189
+    },
+    {
+      "name": "Kuřecí řízek, s naším bramborovým salátem nebo bramborovou kaší",
+      "price": 189
+    },
+    {
+      "name": "Holandský řízek, s naším bramborovým salátem nebo bramborovou kaší",
+      "price": 189
+    },
+    {
+      "name": "Maďarský guláš s pečenými paprikami, červenou cibulkou, naším houskovým knedlíkem/rýží",
+      "price": 205
+    },
+    {
+      "name": "Hovězí svíčková omáčka, s brusinkami a smetanou a naším houskovým knedlíkem",
+      "price": 209
+    },
+    {
+      "name": "Trhané krůtí maso pěti vůní, se salátem z čínského zelí, okurkou a mangem s koriandrovým pyré a jarní cibulkou",
+      "price": 209
+    },
+    {
+      "name": "Srbské rizoto s hovězím masem, zeleninou, nakládanou okurkou a sýrem gouda",
+      "price": 195
+    },
+    {
+      "name": "Hovězí musaka, zapečená pod sýrovým bešamelem se zakysanou smetanou, listy rukoly a bazalkovým pestem",
+      "price": 195
+    },
+    {
+      "name": "Krémová česnečka s máslovými krutony",
+      "price": 59
+    },
+    {
+      "name": "Kuře po baskicku, se zeleninou a černými olivami s jasmínovou rýží a listy rukoly",
+      "price": 195
+    },
+    {
+      "name": "Indonéský kuřecí rendang, kousky kuřecího v pikantní omáčce s kokosovým mlékem s kafírovými listy a citronovou trávou s jasmínovou rýží  a listy koriandru",
+      "price": 199
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fetch daily lunch menus from 3 Karlín restaurants and save as JSON."""
+"""Fetch daily lunch menus from 5 Karlín restaurants and save as JSON."""
 
 import json
 import os
@@ -156,6 +156,55 @@ def fetch_tankovna() -> dict:
     }
 
 
+def fetch_jidlovice() -> dict:
+    """Fetch daily menu from Jídlovice Karlín via REST API."""
+    today = date.today()
+    today_str = today.strftime("%Y-%m-%d")
+
+    api_url = (
+        f"https://www.jidlovice.cz/api/v1/branch/2/menu/{today_str}"
+        "?include_internal_tags=false"
+    )
+
+    resp = requests.get(api_url, headers=HEADERS, timeout=15)
+    resp.raise_for_status()
+    data = resp.json()
+
+    menu_items = data.get("menu_items", [])
+    if not menu_items:
+        return {
+            "date": today_str,
+            "restaurant": "Jídlovice Karlín",
+            "available": False,
+            "soup": None,
+            "dishes": [],
+        }
+
+    soup_item = None
+    dishes = []
+
+    for item in menu_items:
+        meal = item.get("meal", {})
+        name = (meal.get("name") or "").strip()
+        desc = (meal.get("description") or "").strip()
+        full_name = f"{name}, {desc}" if desc else name
+        price = meal.get("price")
+        category_id = meal.get("category_id")
+
+        if category_id == 1 and soup_item is None:
+            soup_item = {"name": full_name, "price": price}
+        elif price is not None:
+            dishes.append({"name": full_name, "price": price})
+
+    return {
+        "date": today_str,
+        "restaurant": "Jídlovice Karlín",
+        "available": bool(soup_item or dishes),
+        "soup": soup_item,
+        "dishes": dishes,
+    }
+
+
 def save_menu(filename: str, data: dict) -> None:
     """Save menu data to JSON file."""
     os.makedirs(MENUS_DIR, exist_ok=True)
@@ -199,9 +248,29 @@ def main():
         print(f"  Tankovna Karlín FAILED: {e}")
         tankovna = {"date": today.isoformat(), "restaurant": "Tankovna Karlín", "available": False, "soup": None, "dishes": []}
 
+    # Fetch Dvořek Karlín
+    try:
+        dvorek = fetch_menicka("https://www.menicka.cz/2427-dvorek-karlin.html", "Dvořek Karlín")
+        # Filter out section headers (items with no price like "Týdenní speciály")
+        dvorek["dishes"] = [d for d in dvorek["dishes"] if d["price"] is not None]
+        print(f"  Dvořek Karlín: {len(dvorek['dishes'])} dishes")
+    except Exception as e:
+        print(f"  Dvořek Karlín FAILED: {e}")
+        dvorek = {"date": today.isoformat(), "restaurant": "Dvořek Karlín", "available": False, "soup": None, "dishes": []}
+
+    # Fetch Jídlovice Karlín
+    try:
+        jidlovice = fetch_jidlovice()
+        print(f"  Jídlovice Karlín: {len(jidlovice['dishes'])} dishes")
+    except Exception as e:
+        print(f"  Jídlovice Karlín FAILED: {e}")
+        jidlovice = {"date": today.isoformat(), "restaurant": "Jídlovice Karlín", "available": False, "soup": None, "dishes": []}
+
     save_menu("pivo.json", pivo)
     save_menu("diego.json", diego)
     save_menu("tankovna.json", tankovna)
+    save_menu("dvorek.json", dvorek)
+    save_menu("jidlovice.json", jidlovice)
 
     print("Done!")
 
