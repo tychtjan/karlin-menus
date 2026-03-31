@@ -253,6 +253,11 @@ def main():
         dvorek = fetch_menicka("https://www.menicka.cz/2427-dvorek-karlin.html", "Dvořek Karlín")
         # Filter out section headers (items with no price like "Týdenní speciály")
         dvorek["dishes"] = [d for d in dvorek["dishes"] if d["price"] is not None]
+        # Normalize ALLCAPS dish names to sentence case
+        if dvorek.get("soup"):
+            dvorek["soup"]["name"] = dvorek["soup"]["name"].capitalize()
+        for d in dvorek["dishes"]:
+            d["name"] = d["name"].capitalize()
         print(f"  Dvořek Karlín: {len(dvorek['dishes'])} dishes")
     except Exception as e:
         print(f"  Dvořek Karlín FAILED: {e}")
