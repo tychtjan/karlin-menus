@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Fetch daily lunch menus from 5 Karlín restaurants and save as JSON."""
 
+import base64
 import json
 import os
 import re
@@ -214,6 +215,50 @@ def save_menu(filename: str, data: dict) -> None:
     print(f"Saved {filepath}")
 
 
+def post_to_slack() -> None:
+    """Post pre-built menu content to Slack canvas and channel."""
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    cfg_path = os.path.join(script_dir, ".bot_cfg")
+    canvas_path = os.path.join(script_dir, "_post_canvas.md")
+    slack_path = os.path.join(script_dir, "_post_slack.txt")
+
+    if not (os.path.exists(cfg_path) and os.path.exists(canvas_path) and os.path.exists(slack_path)):
+        return
+
+    with open(cfg_path) as f:
+        tok = base64.b64decode(f.read().strip()).decode()
+
+    with open(canvas_path) as f:
+        content = f.read()
+    payload = {
+        "canvas_id": "F0AQ1CDG0TE",
+        "changes": [{"operation": "replace", "document_content": {"type": "markdown", "markdown": content}}],
+    }
+    r = requests.post(
+        "https://slack.com/api/canvases.edit",
+        headers={"Authorization": "Bearer " + tok, "Content-Type": "application/json"},
+        json=payload,
+    )
+    result = r.json()
+    print("Canvas result:", result)
+    if not result.get("ok"):
+        print(f"Canvas update failed: {result}")
+
+    with open(slack_path) as f:
+        text = f.read()
+    payload = {"channel": "C0AQAJFNG8Z", "text": text, "unfurl_links": False, "unfurl_media": False}
+    r = requests.post(
+        "https://slack.com/api/chat.postMessage",
+        headers={"Authorization": "Bearer " + tok, "Content-Type": "application/json"},
+        json=payload,
+    )
+    result = r.json()
+    print("Message result:", result)
+    if not result.get("ok"):
+        raise Exception(f"Message post failed: {result}")
+    print("Slack posting complete!")
+
+
 def main():
     today = date.today()
     weekday = today.weekday()
@@ -278,6 +323,13 @@ def main():
     save_menu("jidlovice.json", jidlovice)
 
     print("Done!")
+
+    # Post to Slack if pre-built content files are present
+    try:
+        post_to_slack()
+    except Exception as e:
+        print(f"Slack posting failed: {e}")
+        raise
 
 
 if __name__ == "__main__":
