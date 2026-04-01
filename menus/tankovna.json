@@ -1,43 +1,43 @@
 {
-  "date": "2026-03-31",
+  "date": "2026-04-01",
   "restaurant": "Tankovna Karlín",
   "available": true,
   "soup": {
-    "name": "Tomatová S Těstovinou",
+    "name": "Cibulačka",
     "price": 45
   },
   "dishes": [
     {
-      "name": "Smažené Žampiony S Vařeným Bramborem A Tatarkou",
-      "price": 179
-    },
-    {
-      "name": "Buřtguláš S Chlebem",
-      "price": 189
-    },
-    {
-      "name": "Kuřecí Kousky S Kořenovou Zeleninou A Rýží",
-      "price": 189
-    },
-    {
-      "name": "Boloňské Špagety S Parmazánem",
-      "price": 189
-    },
-    {
-      "name": "Kuřecí Roláda Plněná Špenátem, Sýrem A Šunkou, Kaše",
+      "name": "Pečené Králičí Stehýnko, Šťouchaný Brambor S Cibulkou",
       "price": 199
     },
     {
-      "name": "Palačinky S Horkými Malinami A Zmrzlinou",
-      "price": 165
+      "name": "Kuřecí Paličky Na Paprice S Těstovinami",
+      "price": 189
     },
     {
-      "name": "Grilovaný Steak Z Kotlety, Restovaná Slaninka S Chilli A Šalotkou,    Grenaille",
+      "name": "Uzená Pečeně S Červeným Zelím, Bramborový Knedlík",
+      "price": 189
+    },
+    {
+      "name": "Řízek Z Krkovice, Vídeňský Bramborový Salát",
+      "price": 199
+    },
+    {
+      "name": "Quesadilla S Restovanými Žampiony, Slaninkou, Cibulkou A Sýrem, Zakysaná Smetana",
+      "price": 189
+    },
+    {
+      "name": "Bbq Žebírka S Pikantním Salátkem A Chlebem",
+      "price": 209
+    },
+    {
+      "name": "Hovězí Roštěná, Bramborové Tolárky A Demi - Glace",
       "price": 239
     },
     {
-      "name": "Variace Salátů S Hruškou A Hermelínem",
-      "price": 189
+      "name": "Mix Salátů S Brokolicí, Cherry Rajčaty A Balzamikovou Zálivkou",
+      "price": 169
     },
     {
       "name": "Dezert – Citrusový Koláč S Malinami",

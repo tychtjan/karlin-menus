@@ -1,34 +1,34 @@
 {
-  "date": "2026-03-31",
+  "date": "2026-04-01",
   "restaurant": "Pivo Karlín",
   "available": true,
   "soup": {
-    "name": "Frankfurtská s párkem",
+    "name": "Žampiónový krém s tymiánem",
     "price": 55
   },
   "dishes": [
     {
-      "name": "Grilovaná telecí Maminha, pečená mrkev s medem a lískovými ořechy, brambory",
+      "name": "Grilovaná kotleta s kostí, pečený tuřín a cibulky na slanině, brambora s tvarohem",
       "price": 275
     },
     {
-      "name": "Kuře kung pao se zeleninou a sečuánským chilli, sezamová rýže",
+      "name": "Hovězí svíčková na smetaně, brusinky, houskové knedlíky",
+      "price": 208
+    },
+    {
+      "name": "Trhané kuře v medové chipotle omáčce, jasmínová rýže, koriandr",
       "price": 204
     },
     {
-      "name": "Pečená krkovice na česneku, smetanový špenát, bramborové knedlíky",
-      "price": 205
-    },
-    {
-      "name": "Smažené vykostěné kuřecí stehno Louisiana, bramborová kaše, coleslaw",
+      "name": "Smažený holandský řízek, bramborová kaše, kyselá okurka",
       "price": 204
     },
     {
-      "name": "VEG Dukátové buchtičky, rumová omáčka, marinované rozinky, strouhaný perník",
+      "name": "VEG Grilované brokolicové karbanátky, americké brambory, kari majonéza",
       "price": 203
     },
     {
-      "name": "Sekané biftečky, smetanová omáčka se zeleným pepřem, pečená brambora",
+      "name": "Rizoto z těstovinové rýže s vepřovým masem, rajčaty a salsou chipotle, sýr",
       "price": 199
     },
     {

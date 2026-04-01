@@ -1,23 +1,19 @@
 {
-  "date": "2026-03-31",
+  "date": "2026-04-01",
   "restaurant": "Diego Pivní Bar",
   "available": true,
   "soup": {
-    "name": "Lohikeitto - tradiční finská smetanová polévka se zeleninou koprem a lososem",
+    "name": "Tomatová polévka se sýrem, jalapeno papričkami a nachos",
     "price": 45
   },
   "dishes": [
     {
-      "name": "Chilli sin carne - fazolová smes s cuketou, kukuřící a tomaty s restovanými žampiony a kešu oříšky, podává se s rýží, sýrem, zakysanou smetanou a nachos",
+      "name": "Bourboun ribs - vepřová žebra glazovaná směsí bourbonu, hnědém cukru a worchestru, podává se s hranolkami a salátem coleslaw",
+      "price": 205
+    },
+    {
+      "name": "Burrito con avocado - tortilla plněná fazolemi, sýrem, rýží a avokádem, podává se s nachos a salsou mexicana",
       "price": 179
-    },
-    {
-      "name": "Chipotle burger - hovězí maso s naší chipotle salsou, podává se s nachos a salsou mexicana",
-      "price": 195
-    },
-    {
-      "name": "American bbq chicken - čtvrtka kuřete pečeného v bbq s hranolkami a kukuřicí a bylinkovým dresingem",
-      "price": 189
     }
   ]
 }
