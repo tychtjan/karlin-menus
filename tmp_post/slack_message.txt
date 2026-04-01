@@ -1,0 +1,62 @@
+:knife_fork_plate: *Obědová menu — 1.4.2026*
+
+───────────────────────────────────
+:beer: *Pivo Karlín*
+_Polévka:_ Žampiónový krém s tymiánem • *55 Kč*
+1. Grilovaná kotleta s kostí, pečený tuřín a cibulky na slanině, brambora s tvarohem • *275 Kč*
+2. Hovězí svíčková na smetaně, brusinky, houskové knedlíky • *208 Kč*
+3. Trhané kuře v medové chipotle omáčce, jasmínová rýže, koriandr • *204 Kč*
+4. Smažený holandský řízek, bramborová kaše, kyselá okurka • *204 Kč*
+5. VEG Grilované brokolicové karbanátky, americké brambory, kari majonéza • *203 Kč*
+6. Rizoto z těstovinové rýže s vepřovým masem, rajčaty a salsou chipotle, sýr • *199 Kč*
+7. Italský těstovinový salát • *49 Kč*
+8. 2ks Palačinka s ostružinovým tvarohem • *59 Kč*
+
+───────────────────────────────────
+:hot_pepper: *Diego Pivní Bar*
+_Polévka:_ Tomatová polévka se sýrem, jalapeno papričkami a nachos • *45 Kč*
+1. Bourboun ribs - vepřová žebra glazovaná směsí bourbonu, hnědém cukru a worchestru, podává se s hranolkami a salátem coleslaw • *205 Kč*
+2. Burrito con avocado - tortilla plněná fazolemi, sýrem, rýží a avokádem, podává se s nachos a salsou mexicana • *179 Kč*
+
+───────────────────────────────────
+:beers: *Tankovna Karlín*
+_Polévka:_ Cibulačka • *45 Kč*
+1. Pečené Králičí Stehýnko, Šťouchaný Brambor S Cibulkou • *199 Kč*
+2. Kuřecí Paličky Na Paprice S Těstovinami • *189 Kč*
+3. Uzená Pečeně S Červeným Zelím, Bramborový Knedlík • *189 Kč*
+4. Řízek Z Krkovice, Vídeňský Bramborový Salát • *199 Kč*
+5. Quesadilla S Restovanými Žampiony, Slaninkou, Cibulkou A Sýrem, Zakysaná Smetana • *189 Kč*
+6. Bbq Žebírka S Pikantním Salátkem A Chlebem • *209 Kč*
+7. Hovězí Roštěná, Bramborové Tolárky A Demi - Glace • *239 Kč*
+8. Mix Salátů S Brokolicí, Cherry Rajčaty A Balzamikovou Zálivkou • *169 Kč*
+9. Dezert – Citrusový Koláč S Malinami • *65 Kč*
+
+───────────────────────────────────
+:deciduous_tree: *Dvořek Karlín*
+_Polévka:_ Hovězí vývar /maso/nudle/zelenina • *70 Kč*
+1. Čočková polévka s klobásou čočka/cibule/česnek/klobása/kořenová zelenina/petrželka • *75 Kč*
+2. Marry me chicken gnocchi bramborové noky/kuřecí prso/sušená rajčata/sýr gran moravia/ smetana/baby špenát/kerblík • *225 Kč*
+3. Škaredá cmunda po kaplicku roztrhaný bramborák/kysané zelí/uzená krkovice/smažená cibulka/pažitka • *225 Kč*
+4. Chilli con carne jasmínová rýže/mletý hovězí karabáček/nachos/červené fazole/ paprika/rajče/kukuřice/čokoláda/zakysaná smetana/ chilli/koriandr/petrželka • *229 Kč*
+5. Asijský salát s trhaným kuřetem kuřecí prso/mrkev/asijské zelí/mix salátů/kešu/máta/asijský dresink/koriandr/smažená cibulka • *219 Kč*
+6. Krémové houbové rizoto rýže arborio/hlíva ústřičná/lesní houby/pošírované vejce/sýr gran moravia/bílé víno/česnek/máslo/petrželka • *219 Kč*
+7. Hovězí tatarák s majonézou z medvědího česneku opečený chléb/hovězí falešná svíčková/cornichons okurky/naše majonéza z medvědího česneku/kapary/šalotka/ředkvičky/microgreens • *289 Kč*
+8. Kuřecí roláda s kopřivovou nádivkou šťouchané brambory s medvědím česnekem/vykoštěné kuře/ toustový chléb/kopřivy/kuřecí demi glace/muškátový ořech/baby karotka/microgreens • *325 Kč*
+9. French toast z mazance náš mazanec/vanilkový pribináček/skořice/karamelizované hrušky/karamelizovaná jablka/ amaretto/máta • *149 Kč*
+
+───────────────────────────────────
+:stew: *Jídlovice Karlín*
+_Polévka:_ Kuřecí vývar s játrovou rýží, s pečenou zeleninou a libečkem • *59 Kč*
+1. Hovězí Stroganoff, s nakládanou okurkou a pečenými žampiony s jasmínovou rýží a listy petržele • *209 Kč*
+2. Kuřecí řízek, s naším bramborovým salátem nebo bramborovou kaší • *189 Kč*
+3. Holandský řízek, s naším bramborovým salátem nebo bramborovou kaší • *189 Kč*
+4. Maďarský guláš s pečenými paprikami, červenou cibulkou, naším houskovým knedlíkem/rýží • *205 Kč*
+5. Hovězí svíčková omáčka, s brusinkami a smetanou a naším houskovým knedlíkem • *209 Kč*
+6. Pomalu pečený vepřový bok, s bramborovou plackou s brynzovým dipem, vypečenou slaninou a restovanou červenou cibulkou • *189 Kč*
+7. Kuřecí souvlaki, s řeckým salátem s černými olivami, okurkovými tzatziki, grilovaným pita chlebem a listy rukoly • *199 Kč*
+8. Smažený květák, s vařeným bramborem s přepuštěným máslem, naší tatarkou a pažitkou • *189 Kč*
+9. Sýrová quesadilla, s grilovaným sýrem halloumi a cheddarem, pečenou zeleninou a BBQ omáčkou se zeleninovým salátem a dipem ze zakysané smetany • *195 Kč*
+10. Tomatová polévka se zeleninou a čočkou beluga • *59 Kč*
+11. Trhané kuřecí prso v cheddarové omáčce, s pečeným bramborem s pórkem a kukuřicí, marinovanou zeleninou a listy koriandru • *199 Kč*
+───────────────────────────────────
+:bookmark: <https://gooddata.slack.com/docs/T02G0PHRH/F0APQG2RWV8|Otevřít v canvasu>
