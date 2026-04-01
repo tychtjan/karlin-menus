@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  fetch:
+  fetch-and-post:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,7 +19,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install requests beautifulsoup4
+        run: pip install requests beautifulsoup4 anthropic
 
       - name: Fetch menus
         run: python fetch_menus.py
@@ -31,3 +31,9 @@ jobs:
           git add menus/
           git diff --staged --quiet || git commit -m "Update menus $(date +%Y-%m-%d)"
           git push
+
+      - name: Post to Slack
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
+        run: python post_menus.py
