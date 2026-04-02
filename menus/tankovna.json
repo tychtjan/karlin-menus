@@ -1,47 +1,7 @@
 {
-  "date": "2026-04-01",
+  "date": "2026-04-02",
   "restaurant": "Tankovna Karlín",
-  "available": true,
-  "soup": {
-    "name": "Cibulačka",
-    "price": 45
-  },
-  "dishes": [
-    {
-      "name": "Pečené Králičí Stehýnko, Šťouchaný Brambor S Cibulkou",
-      "price": 199
-    },
-    {
-      "name": "Kuřecí Paličky Na Paprice S Těstovinami",
-      "price": 189
-    },
-    {
-      "name": "Uzená Pečeně S Červeným Zelím, Bramborový Knedlík",
-      "price": 189
-    },
-    {
-      "name": "Řízek Z Krkovice, Vídeňský Bramborový Salát",
-      "price": 199
-    },
-    {
-      "name": "Quesadilla S Restovanými Žampiony, Slaninkou, Cibulkou A Sýrem, Zakysaná Smetana",
-      "price": 189
-    },
-    {
-      "name": "Bbq Žebírka S Pikantním Salátkem A Chlebem",
-      "price": 209
-    },
-    {
-      "name": "Hovězí Roštěná, Bramborové Tolárky A Demi - Glace",
-      "price": 239
-    },
-    {
-      "name": "Mix Salátů S Brokolicí, Cherry Rajčaty A Balzamikovou Zálivkou",
-      "price": 169
-    },
-    {
-      "name": "Dezert – Citrusový Koláč S Malinami",
-      "price": 65
-    }
-  ]
+  "available": false,
+  "soup": null,
+  "dishes": []
 }

@@ -1,5 +1,5 @@
 {
-  "date": "2026-04-01",
+  "date": "2026-04-02",
   "restaurant": "Jídlovice Karlín",
   "available": true,
   "soup": {
@@ -7,10 +7,6 @@
     "price": 59
   },
   "dishes": [
-    {
-      "name": "Hovězí Stroganoff, s nakládanou okurkou a pečenými žampiony s jasmínovou rýží a listy petržele",
-      "price": 209
-    },
     {
       "name": "Kuřecí řízek, s naším bramborovým salátem nebo bramborovou kaší",
       "price": 189
@@ -28,28 +24,32 @@
       "price": 209
     },
     {
-      "name": "Pomalu pečený vepřový bok, s bramborovou plackou s brynzovým dipem, vypečenou slaninou a restovanou červenou cibulkou",
-      "price": 189
-    },
-    {
-      "name": "Kuřecí souvlaki, s řeckým salátem s černými olivami, okurkovými tzatziki, grilovaným pita chlebem a listy rukoly",
-      "price": 199
-    },
-    {
-      "name": "Smažený květák, s vařeným bramborem s přepuštěným máslem, naší tatarkou a pažitkou",
-      "price": 189
-    },
-    {
-      "name": "Sýrová quesadilla, s grilovaným sýrem halloumi a cheddarem, pečenou zeleninou a BBQ omáčkou se zeleninovým salátem a dipem ze zakysané smetany",
+      "name": "Kuřecí paličky Louisiana, s pečeným bramborem s pórkem a kukuřicí, chipotle omáčkou, marinovaným bílým zelím s jalapeňos papričkou a listy koriandru",
       "price": 195
     },
     {
-      "name": "Tomatová polévka se zeleninou a čočkou beluga",
-      "price": 59
+      "name": "Hovězí jazyk v silné asijské omáčce, s wasabi pyré, marinovanou zeleninou a listy koriandru",
+      "price": 195
     },
     {
-      "name": "Trhané kuřecí prso v cheddarové omáčce, s pečeným bramborem s pórkem a kukuřicí, marinovanou zeleninou a listy koriandru",
+      "name": "Carnitas burrito bowl, vepřové trhané s chipotle majonézou, salsou verde, guacamole, fazolemi, kukuřicí, marinovanou červenou cibulí a sushi rýží",
+      "price": 195
+    },
+    {
+      "name": "Kuřecí steak tandoori, v masala omáčce s kuskusem s mandlemi a rozinkami, okurkovou rajtou a jarní cibulkou",
       "price": 199
+    },
+    {
+      "name": "Zeleninové kari, s kokosovým mlékem s marinovaným tofu s jasmínovou rýží, mungo klíčky a listy koriandru",
+      "price": 189
+    },
+    {
+      "name": "Masové kuličky, v sýrové omáčce s hranolky, brusinkami a listy petržele",
+      "price": 189
+    },
+    {
+      "name": "Zelná polévka s klobásou, a zakysanou smetanou",
+      "price": 59
     }
   ]
 }

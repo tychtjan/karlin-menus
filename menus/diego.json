@@ -1,19 +1,23 @@
 {
-  "date": "2026-04-01",
+  "date": "2026-04-02",
   "restaurant": "Diego Pivní Bar",
   "available": true,
   "soup": {
-    "name": "Tomatová polévka se sýrem, jalapeno papričkami a nachos",
+    "name": "Tradiční čočková polévka s párkem",
     "price": 45
   },
   "dishes": [
     {
-      "name": "Bourboun ribs - vepřová žebra glazovaná směsí bourbonu, hnědém cukru a worchestru, podává se s hranolkami a salátem coleslaw",
+      "name": "Quesadilla pollo de barbados - tortilla plněná kuřecím masem pečeným na kokosovém mléce a rumu, s grilovanou zeleninou a sýrem, podává se s nachos a salsou mexicana",
+      "price": 189
+    },
+    {
+      "name": "Chipotle honey ribs s hranolkami a zelným salátem",
       "price": 205
     },
     {
-      "name": "Burrito con avocado - tortilla plněná fazolemi, sýrem, rýží a avokádem, podává se s nachos a salsou mexicana",
-      "price": 179
+      "name": "Vege larnaca burger - grilovaný sýr typu halloumi se salsou z pečené papriky, cibulí, rajčaty a bylinkovou majonesou, podává se s nachos a zakysanou smetanou",
+      "price": 195
     }
   ]
 }

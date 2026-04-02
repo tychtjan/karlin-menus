@@ -1,34 +1,34 @@
 {
-  "date": "2026-04-01",
+  "date": "2026-04-02",
   "restaurant": "Pivo Karlín",
   "available": true,
   "soup": {
-    "name": "Žampiónový krém s tymiánem",
+    "name": "Čočková polévka s párkem",
     "price": 55
   },
   "dishes": [
     {
-      "name": "Grilovaná kotleta s kostí, pečený tuřín a cibulky na slanině, brambora s tvarohem",
+      "name": "Trhaný daněk na rozmarýnu, opečené škubánky, fazolky na slanině",
       "price": 275
     },
     {
-      "name": "Hovězí svíčková na smetaně, brusinky, houskové knedlíky",
-      "price": 208
-    },
-    {
-      "name": "Trhané kuře v medové chipotle omáčce, jasmínová rýže, koriandr",
+      "name": "Čevabčiči z vepřové a hovězí plece, brambory, cibule, hořčice",
       "price": 204
     },
     {
-      "name": "Smažený holandský řízek, bramborová kaše, kyselá okurka",
+      "name": "Burrito Habanero, mleté hovězí, rýže, kukuřice, fazole, sýr, coleslaw",
+      "price": 205
+    },
+    {
+      "name": "Kuřecí wok s kešu ořechy a zeleninou, jasmínová rýže, mungo klíčky",
       "price": 204
     },
     {
-      "name": "VEG Grilované brokolicové karbanátky, americké brambory, kari majonéza",
+      "name": "VEG Smažená gouda, vařené brambory s libečkem, tatarská omáčka",
       "price": 203
     },
     {
-      "name": "Rizoto z těstovinové rýže s vepřovým masem, rajčaty a salsou chipotle, sýr",
+      "name": "Čočka na kyselo, párek, cibulový konfit, nakládaná okurka",
       "price": 199
     },
     {

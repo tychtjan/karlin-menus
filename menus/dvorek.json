@@ -1,34 +1,34 @@
 {
-  "date": "2026-04-01",
+  "date": "2026-04-02",
   "restaurant": "Dvořek Karlín",
   "available": true,
   "soup": {
-    "name": "Hovězí vývar /maso/nudle/zelenina",
+    "name": "Kuřecí vývar /maso/nudle/zelenina",
     "price": 70
   },
   "dishes": [
     {
-      "name": "Čočková polévka s klobásou čočka/cibule/česnek/klobása/kořenová zelenina/petrželka",
+      "name": "Kopřivová polévka s medvědím česnekem špenát/kopřivy/smetana/brambory/medvědí česnek/krutony",
       "price": 75
     },
     {
-      "name": "Marry me chicken gnocchi bramborové noky/kuřecí prso/sušená rajčata/sýr gran moravia/ smetana/baby špenát/kerblík",
+      "name": "Holandský řízek máslová bramborová kaše/mletá vepřová plec/uzený eidam/kyselé okurky/červená cibule/kopr/pažitka",
       "price": 225
     },
     {
-      "name": "Škaredá cmunda po kaplicku roztrhaný bramborák/kysané zelí/uzená krkovice/smažená cibulka/pažitka",
+      "name": "Kuřecí prso na zeleném kari jasmínová rýže/zelená kari pasta/kokosové mléko/zázvor/chilli/česnek/paprika/žampion/cuketa/koriandr",
       "price": 225
     },
     {
-      "name": "Chilli con carne jasmínová rýže/mletý hovězí karabáček/nachos/červené fazole/ paprika/rajče/kukuřice/čokoláda/zakysaná smetana/ chilli/koriandr/petrželka",
+      "name": "Mexické trhané hovězí hranolky/hovězí chuck roll/čedarová omáčka/chipotle/rajče/jarní cibulka/jalapeños/koriandr",
       "price": 229
     },
     {
-      "name": "Asijský salát s trhaným kuřetem kuřecí prso/mrkev/asijské zelí/mix salátů/kešu/máta/asijský dresink/koriandr/smažená cibulka",
+      "name": "Fusilli se špenátem a mozzarellou sýr gran moravia/vlašské ořechy/baby mozzarella/česnek/chilli/baby špenát",
       "price": 219
     },
     {
-      "name": "Krémové houbové rizoto rýže arborio/hlíva ústřičná/lesní houby/pošírované vejce/sýr gran moravia/bílé víno/česnek/máslo/petrželka",
+      "name": "Grilovaný kozí sýr na salátu pečené grenaille/jahody/grep/hroznové víno/nakládaná cuketa/mix salátů/medovo hořčičný dresink/ořechy",
       "price": 219
     },
     {
