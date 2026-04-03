@@ -1,5 +1,5 @@
 {
-  "date": "2026-04-02",
+  "date": "2026-04-03",
   "restaurant": "Jídlovice Karlín",
   "available": true,
   "soup": {
@@ -22,34 +22,6 @@
     {
       "name": "Hovězí svíčková omáčka, s brusinkami a smetanou a naším houskovým knedlíkem",
       "price": 209
-    },
-    {
-      "name": "Kuřecí paličky Louisiana, s pečeným bramborem s pórkem a kukuřicí, chipotle omáčkou, marinovaným bílým zelím s jalapeňos papričkou a listy koriandru",
-      "price": 195
-    },
-    {
-      "name": "Hovězí jazyk v silné asijské omáčce, s wasabi pyré, marinovanou zeleninou a listy koriandru",
-      "price": 195
-    },
-    {
-      "name": "Carnitas burrito bowl, vepřové trhané s chipotle majonézou, salsou verde, guacamole, fazolemi, kukuřicí, marinovanou červenou cibulí a sushi rýží",
-      "price": 195
-    },
-    {
-      "name": "Kuřecí steak tandoori, v masala omáčce s kuskusem s mandlemi a rozinkami, okurkovou rajtou a jarní cibulkou",
-      "price": 199
-    },
-    {
-      "name": "Zeleninové kari, s kokosovým mlékem s marinovaným tofu s jasmínovou rýží, mungo klíčky a listy koriandru",
-      "price": 189
-    },
-    {
-      "name": "Masové kuličky, v sýrové omáčce s hranolky, brusinkami a listy petržele",
-      "price": 189
-    },
-    {
-      "name": "Zelná polévka s klobásou, a zakysanou smetanou",
-      "price": 59
     }
   ]
 }

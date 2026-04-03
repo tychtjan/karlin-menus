@@ -1,47 +1,7 @@
 {
-  "date": "2026-04-02",
+  "date": "2026-04-03",
   "restaurant": "Dvořek Karlín",
   "available": true,
-  "soup": {
-    "name": "Kuřecí vývar /maso/nudle/zelenina",
-    "price": 70
-  },
-  "dishes": [
-    {
-      "name": "Kopřivová polévka s medvědím česnekem špenát/kopřivy/smetana/brambory/medvědí česnek/krutony",
-      "price": 75
-    },
-    {
-      "name": "Holandský řízek máslová bramborová kaše/mletá vepřová plec/uzený eidam/kyselé okurky/červená cibule/kopr/pažitka",
-      "price": 225
-    },
-    {
-      "name": "Kuřecí prso na zeleném kari jasmínová rýže/zelená kari pasta/kokosové mléko/zázvor/chilli/česnek/paprika/žampion/cuketa/koriandr",
-      "price": 225
-    },
-    {
-      "name": "Mexické trhané hovězí hranolky/hovězí chuck roll/čedarová omáčka/chipotle/rajče/jarní cibulka/jalapeños/koriandr",
-      "price": 229
-    },
-    {
-      "name": "Fusilli se špenátem a mozzarellou sýr gran moravia/vlašské ořechy/baby mozzarella/česnek/chilli/baby špenát",
-      "price": 219
-    },
-    {
-      "name": "Grilovaný kozí sýr na salátu pečené grenaille/jahody/grep/hroznové víno/nakládaná cuketa/mix salátů/medovo hořčičný dresink/ořechy",
-      "price": 219
-    },
-    {
-      "name": "Hovězí tatarák s majonézou z medvědího česneku opečený chléb/hovězí falešná svíčková/cornichons okurky/naše majonéza z medvědího česneku/kapary/šalotka/ředkvičky/microgreens",
-      "price": 289
-    },
-    {
-      "name": "Kuřecí roláda s kopřivovou nádivkou šťouchané brambory s medvědím česnekem/vykoštěné kuře/ toustový chléb/kopřivy/kuřecí demi glace/muškátový ořech/baby karotka/microgreens",
-      "price": 325
-    },
-    {
-      "name": "French toast z mazance náš mazanec/vanilkový pribináček/skořice/karamelizované hrušky/karamelizovaná jablka/ amaretto/máta",
-      "price": 149
-    }
-  ]
+  "soup": null,
+  "dishes": []
 }
