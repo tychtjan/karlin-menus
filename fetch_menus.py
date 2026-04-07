@@ -240,11 +240,13 @@ def fetch_sancarlo() -> dict:
                     "type": "text",
                     "text": (
                         "Extract the menu items from this restaurant menu image. "
+                        "Each item has an Italian name and a Czech description below it. "
                         "Return ONLY valid JSON in this exact format, nothing else:\n"
-                        '{"soup": {"name": "Czech name of soup", "price": 75}, '
-                        '"dishes": [{"name": "Czech name of dish", "price": 215}]}\n'
+                        '{"soup": {"name": "Italian name — Czech description", "price": 75}, '
+                        '"dishes": [{"name": "Italian name — Czech description", "price": 215}]}\n'
                         "Rules:\n"
-                        "- Use the Czech description, not the Italian name\n"
+                        "- Combine the Italian name and Czech description with ' — ' separator\n"
+                        "  Example: 'Penne al Forno — těstoviny penne, rajčata, mozzarella, bazalka'\n"
                         "- Prices are integers in CZK\n"
                         "- If there's a soup/zuppa, put it in soup field\n"
                         "- Put pasta, pizza, and other items in dishes array\n"
