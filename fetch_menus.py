@@ -91,6 +91,8 @@ def fetch_menicka(url: str, restaurant_name: str) -> dict:
         clean_name = re.sub(r"^\d+\.\s*(?:\d+g\s+)?", "", item_text).strip()
         # Also handle "1. 180g ..." pattern
         clean_name = re.sub(r"^\d+g\s+", "", clean_name).strip()
+        # Remove trailing allergen codes like "*1a, 7, 9" or "*3, 6, 7"
+        clean_name = re.sub(r"\s*\*[\d,a-z\s]+$", "", clean_name).strip()
 
         li_classes = " ".join(li.get("class", []))
         if "polevka" in li_classes and soup_item is None:
