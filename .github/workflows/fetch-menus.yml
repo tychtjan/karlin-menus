@@ -3,7 +3,12 @@ name: Fetch Daily Menus
 on:
   schedule:
     - cron: '0 8 * * 1-5'  # 8:00 UTC Mon-Fri (10:00 CEST / 9:00 CET)
-  workflow_dispatch: {}     # Manual trigger for testing
+  workflow_dispatch:
+    inputs:
+      test_mode:
+        description: 'Post to test channel instead of production'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -36,4 +41,5 @@ jobs:
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
+          TEST_MODE: ${{ inputs.test_mode }}
         run: python post_menus.py
