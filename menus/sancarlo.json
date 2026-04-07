@@ -3,16 +3,16 @@
   "restaurant": "San Carlo",
   "available": true,
   "soup": {
-    "name": "Vellutata di Verza",
+    "name": "Vellutata di Verza — Kapusta, brambory, cibule",
     "price": 75
   },
   "dishes": [
     {
-      "name": "Penne al Forno",
+      "name": "Penne al Forno — Těstoviny penne, rajčata, mozzarella, bazalka",
       "price": 215
     },
     {
-      "name": "Orto e Sapori",
+      "name": "Orto e Sapori — Rajčatová omáčka, mozzarella, šunka, artyčoky",
       "price": 215
     }
   ]
