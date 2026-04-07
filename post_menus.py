@@ -31,6 +31,7 @@ RESTAURANTS = [
     {"file": "tankovna.json", "emoji": ":beers:", "name": "Tankovna Karlín"},
     {"file": "dvorek.json", "emoji": ":deciduous_tree:", "name": "Dvorek Karlín"},
     {"file": "jidlovice.json", "emoji": ":stew:", "name": "Jídlovice Karlín"},
+    {"file": "sancarlo.json", "emoji": ":pizza:", "name": "San Carlo"},
 ]
 
 DIVIDER = "───────────────────────────────────"
@@ -158,7 +159,7 @@ def build_english_canvas(english_message):
             continue  # skip dividers in canvas
         elif line.startswith(":bookmark:"):
             continue  # skip footer in canvas
-        elif any(line.startswith(f"{e} *") for e in [":beer:", ":hot_pepper:", ":beers:", ":deciduous_tree:", ":stew:"]):
+        elif any(line.startswith(f"{e} *") for e in [":beer:", ":hot_pepper:", ":beers:", ":deciduous_tree:", ":stew:", ":pizza:"]):
             # Restaurant header: convert to H2
             header = line.replace(" *", " ").rstrip("*")
             canvas_lines.append("")

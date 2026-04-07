@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Fetch daily lunch menus from 5 Karlín restaurants and save as JSON."""
+"""Fetch daily lunch menus from 6 Karlín restaurants and save as JSON."""
 
+import base64
 import json
 import os
 import re
 from datetime import date, datetime
 
+import anthropic
 import requests
 from bs4 import BeautifulSoup
 
@@ -207,6 +209,74 @@ def fetch_jidlovice() -> dict:
     }
 
 
+def fetch_sancarlo() -> dict:
+    """Fetch weekly menu from San Carlo by reading their menu PNG with Claude vision."""
+    today = date.today()
+    today_str = today.strftime("%Y-%m-%d")
+
+    # Download the menu image
+    resp = requests.get("https://sancarlo.cz/menu.png", headers=HEADERS, timeout=15)
+    resp.raise_for_status()
+    image_b64 = base64.b64encode(resp.content).decode("utf-8")
+
+    # Use Claude vision to extract menu data
+    api_key = os.environ.get("CLAUDE_API_KEY")
+    if not api_key:
+        print("  San Carlo: CLAUDE_API_KEY not set, skipping")
+        return {"date": today_str, "restaurant": "San Carlo", "available": False, "soup": None, "dishes": []}
+
+    client = anthropic.Anthropic(api_key=api_key)
+    message = client.messages.create(
+        model="claude-haiku-4-5-20251001",
+        max_tokens=1024,
+        messages=[{
+            "role": "user",
+            "content": [
+                {
+                    "type": "image",
+                    "source": {"type": "base64", "media_type": "image/png", "data": image_b64},
+                },
+                {
+                    "type": "text",
+                    "text": (
+                        "Extract the menu items from this restaurant menu image. "
+                        "Return ONLY valid JSON in this exact format, nothing else:\n"
+                        '{"soup": {"name": "Czech name of soup", "price": 75}, '
+                        '"dishes": [{"name": "Czech name of dish", "price": 215}]}\n'
+                        "Rules:\n"
+                        "- Use the Czech description, not the Italian name\n"
+                        "- Prices are integers in CZK\n"
+                        "- If there's a soup/zuppa, put it in soup field\n"
+                        "- Put pasta, pizza, and other items in dishes array\n"
+                        "- Remove allergen numbers like (1, 7) from names\n"
+                        "- If the menu image is blank or unreadable, return: "
+                        '{"soup": null, "dishes": []}'
+                    ),
+                },
+            ],
+        }],
+    )
+
+    try:
+        raw = message.content[0].text.strip()
+        # Handle markdown code blocks
+        if raw.startswith("```"):
+            raw = re.sub(r"^```(?:json)?\s*", "", raw)
+            raw = re.sub(r"\s*```$", "", raw)
+        data = json.loads(raw)
+    except (json.JSONDecodeError, IndexError) as e:
+        print(f"  San Carlo: failed to parse Claude response: {e}")
+        return {"date": today_str, "restaurant": "San Carlo", "available": False, "soup": None, "dishes": []}
+
+    return {
+        "date": today_str,
+        "restaurant": "San Carlo",
+        "available": bool(data.get("soup") or data.get("dishes")),
+        "soup": data.get("soup"),
+        "dishes": data.get("dishes", []),
+    }
+
+
 def save_menu(filename: str, data: dict) -> None:
     """Save menu data to JSON file."""
     os.makedirs(MENUS_DIR, exist_ok=True)
@@ -273,11 +343,20 @@ def main():
         print(f"  Jídlovice Karlín FAILED: {e}")
         jidlovice = {"date": today.isoformat(), "restaurant": "Jídlovice Karlín", "available": False, "soup": None, "dishes": []}
 
+    # Fetch San Carlo
+    try:
+        sancarlo = fetch_sancarlo()
+        print(f"  San Carlo: {len(sancarlo['dishes'])} dishes")
+    except Exception as e:
+        print(f"  San Carlo FAILED: {e}")
+        sancarlo = {"date": today.isoformat(), "restaurant": "San Carlo", "available": False, "soup": None, "dishes": []}
+
     save_menu("pivo.json", pivo)
     save_menu("diego.json", diego)
     save_menu("tankovna.json", tankovna)
     save_menu("dvorek.json", dvorek)
     save_menu("jidlovice.json", jidlovice)
+    save_menu("sancarlo.json", sancarlo)
 
     print("Done!")
 
