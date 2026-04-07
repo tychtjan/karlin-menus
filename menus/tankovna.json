@@ -1,7 +1,47 @@
 {
-  "date": "2026-04-06",
+  "date": "2026-04-07",
   "restaurant": "Tankovna Karlín",
-  "available": false,
-  "soup": null,
-  "dishes": []
+  "available": true,
+  "soup": {
+    "name": "Česnečka S Chlebovými Krutóny",
+    "price": 45
+  },
+  "dishes": [
+    {
+      "name": "Zapečené Brambory S Uzeným Masem, Kyselá Okurka",
+      "price": 179
+    },
+    {
+      "name": "Kuřecí Roláda Plněná Nádivkou, Kaše",
+      "price": 199
+    },
+    {
+      "name": "Vepřové Kostky Na Paprice A Kolínka",
+      "price": 189
+    },
+    {
+      "name": "Pečené Kuřecí Čtvrtky Na Divokém Koření, Dušená Rýže",
+      "price": 199
+    },
+    {
+      "name": "Penne S Bazalkovým Pestem, Sušenými Rajčaty A Parmazánem",
+      "price": 179
+    },
+    {
+      "name": "Quesadilla S Trhaným Kuřecím A Vepřovým, Cibulkou, Bbq A Jalapeňos",
+      "price": 189
+    },
+    {
+      "name": "Medailonky Z Panenky S Domácí Pikantní Salsou, Opečené Brambory",
+      "price": 235
+    },
+    {
+      "name": "Variace Salátů S Velikonoční Vaječnou Tlačenkou, Cherry Rajčata A    Hořčično - Medová Zálivka",
+      "price": 189
+    },
+    {
+      "name": "Dezert – Domácí Řez S Malinami A Čokoládovou Polevou",
+      "price": 65
+    }
+  ]
 }

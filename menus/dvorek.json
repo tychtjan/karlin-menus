@@ -1,7 +1,47 @@
 {
-  "date": "2026-04-06",
-  "restaurant": "Dvořek Karlín",
+  "date": "2026-04-07",
+  "restaurant": "Dvorek Karlín",
   "available": true,
-  "soup": null,
-  "dishes": []
+  "soup": {
+    "name": "Kuřecí vývar /maso/nudle/zelenina",
+    "price": 70
+  },
+  "dishes": [
+    {
+      "name": "Frankfurtská polévka brambory/smetana/frankfurtský párek/mletá paprika/petrželka",
+      "price": 75
+    },
+    {
+      "name": "Kuřecí souvlaki pita chléb/kuřecí prso/tzatziki/řecký salát s fetou/kopr/řecké koření/pažitka",
+      "price": 225
+    },
+    {
+      "name": "Vepřová pečeně se zázvorovou marinádou jasmínová rýže/zázvor/česnek/sweet chilli omáčka/nakládaná cuketa/sojová omáčka/koriandr/chilli/jarní cibulka",
+      "price": 225
+    },
+    {
+      "name": "Hovězí guláš náš karlovarský knedlík/hovězí ořech/rajčatový protlak/pivo/mletá paprika/majoránka/nakládaná cibule/křen/petrželka",
+      "price": 229
+    },
+    {
+      "name": "Smažený květák vařené grenaille/mix salátů/naše tatarka/pažitka",
+      "price": 219
+    },
+    {
+      "name": "Grilovaný kozí sýr na salátu pečená řepa/nakládaná hruška/nakládaná cuketa/mix salátů/medovo hořčičný dresink/ořechy",
+      "price": 219
+    },
+    {
+      "name": "Grilovaný losos s holandskou omáčkou konfitované grenaille/chřest/rozmarýn/tymián/česnek/microgreens",
+      "price": 389
+    },
+    {
+      "name": "Korejský hovězí burger hranolky/mletý hovězí karabáček/asijské zelí/bulka/gochujang mayo/mix salátů/koriandr/chilli/jarní cibulka",
+      "price": 389
+    },
+    {
+      "name": "Čokoládová pěna s malinami hořká čokoláda/pistácie/smetana/vaječné žloutky/máta",
+      "price": 149
+    }
+  ]
 }

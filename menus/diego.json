@@ -1,12 +1,19 @@
 {
-  "date": "2026-04-06",
+  "date": "2026-04-07",
   "restaurant": "Diego Pivní Bar",
   "available": true,
-  "soup": null,
+  "soup": {
+    "name": "Sopa de lima - silný kuřecí vývar s limetkovou štávou a smaženou tortillou",
+    "price": 45
+  },
   "dishes": [
     {
-      "name": "Hody hody doprovody - dnes máme otevřeno od 16:30. děkujeme",
-      "price": null
+      "name": "Quesadilla carne de res y chipotle - pšeničná tortilla plněná trhaným hovězím masem, sýrem, fazolemi a chipotle papričkami, podává se s nachos a salsou mexicana",
+      "price": 189
+    },
+    {
+      "name": "Vege encacahuatado de tofu - tofu v mole v omáčce z arašídů, rajčat a chille papriček pasilla, podává se s latinskoamerickou rýží a salátem",
+      "price": 179
     }
   ]
 }

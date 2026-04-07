@@ -1,5 +1,5 @@
 {
-  "date": "2026-04-06",
+  "date": "2026-04-07",
   "restaurant": "Jídlovice Karlín",
   "available": true,
   "soup": {
@@ -7,6 +7,30 @@
     "price": 59
   },
   "dishes": [
+    {
+      "name": "Lasagne bolognese, v omáčce z loupaných rajčat s listy rukoly a bazalkovým pestem",
+      "price": 195
+    },
+    {
+      "name": "Butter chicken, kousky kuřecího prsa v máslové omáčce s jasmínovou rýží a listy koriandru",
+      "price": 199
+    },
+    {
+      "name": "Smažený sýr, s vařeným bramborem s přepuštěným máslem, naší tatarkou a pažitkou",
+      "price": 185
+    },
+    {
+      "name": "Koprová omáčka s vařeným vejcem, s pečenými brambůrky grenaille a koprovým olejem",
+      "price": 185
+    },
+    {
+      "name": "Vepřová líčka na houbách, s mačkaným bramborem s vypečenou slaninou, vídeňskou cibulkou a listy petržele",
+      "price": 199
+    },
+    {
+      "name": "Kuřecí wrap, s čerstvou zeleninou, BBQ majonézou, hranolky a majonézou",
+      "price": 199
+    },
     {
       "name": "Kuřecí řízek, s naším bramborovým salátem nebo bramborovou kaší",
       "price": 189
@@ -22,6 +46,10 @@
     {
       "name": "Hovězí svíčková omáčka, s brusinkami a smetanou a naším houskovým knedlíkem",
       "price": 209
+    },
+    {
+      "name": "Karotková se zázvorem a slunečnicovými semínky",
+      "price": 59
     }
   ]
 }

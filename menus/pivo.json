@@ -1,7 +1,43 @@
 {
-  "date": "2026-04-06",
+  "date": "2026-04-07",
   "restaurant": "Pivo Karlín",
   "available": true,
-  "soup": null,
-  "dishes": []
+  "soup": {
+    "name": "Špenátový krém se zakysanou smetanou *1a, 7, 9",
+    "price": 55
+  },
+  "dishes": [
+    {
+      "name": "Kotleta s kostí, pimento padrone, patas bravas, olivová omáčka *3, 6, 7, 9, 12",
+      "price": 275
+    },
+    {
+      "name": "Grilované kuřecí prso, zelenina na másle, lanýžové velouté *1a, 3, 7, 9, 12",
+      "price": 205
+    },
+    {
+      "name": "Kuře na paprice, zakysaná smetana, dobšická kolínka *1a, 3, 7, 9, 12",
+      "price": 204
+    },
+    {
+      "name": "Trhané ramínko s černými fazolemi, strouhaný sýr, pečené brambory*1a, 3, 6, 7, 9, 11, 12",
+      "price": 204
+    },
+    {
+      "name": "VEG Smažená gouda, brambory s libečkovým máslem, tatarská omáčka *1a, 3, 7, 9, 10, 12",
+      "price": 203
+    },
+    {
+      "name": "Zapečené řeznické brambory s prejtem, salát z kysaného zelí, hořčice *1a, 3, 7, 10, 12",
+      "price": 199
+    },
+    {
+      "name": "Salát z červené řepy s citrónovou šťávou *12",
+      "price": 49
+    },
+    {
+      "name": "Mrkvový koláč s citrónovou omáčkou *1a, 3, 7",
+      "price": 59
+    }
+  ]
 }
