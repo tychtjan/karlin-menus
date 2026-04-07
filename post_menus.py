@@ -29,7 +29,7 @@ RESTAURANTS = [
     {"file": "pivo.json", "emoji": ":beer:", "name": "Pivo Karlín"},
     {"file": "diego.json", "emoji": ":hot_pepper:", "name": "Diego Pivní Bar"},
     {"file": "tankovna.json", "emoji": ":beers:", "name": "Tankovna Karlín"},
-    {"file": "dvorek.json", "emoji": ":deciduous_tree:", "name": "Dvořek Karlín"},
+    {"file": "dvorek.json", "emoji": ":deciduous_tree:", "name": "Dvorek Karlín"},
     {"file": "jidlovice.json", "emoji": ":stew:", "name": "Jídlovice Karlín"},
 ]
 

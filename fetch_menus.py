@@ -248,9 +248,9 @@ def main():
         print(f"  Tankovna Karlín FAILED: {e}")
         tankovna = {"date": today.isoformat(), "restaurant": "Tankovna Karlín", "available": False, "soup": None, "dishes": []}
 
-    # Fetch Dvořek Karlín
+    # Fetch Dvorek Karlín
     try:
-        dvorek = fetch_menicka("https://www.menicka.cz/2427-dvorek-karlin.html", "Dvořek Karlín")
+        dvorek = fetch_menicka("https://www.menicka.cz/2427-dvorek-karlin.html", "Dvorek Karlín")
         # Filter out section headers (items with no price like "Týdenní speciály")
         dvorek["dishes"] = [d for d in dvorek["dishes"] if d["price"] is not None]
         # Normalize ALLCAPS dish names to sentence case
@@ -258,10 +258,10 @@ def main():
             dvorek["soup"]["name"] = dvorek["soup"]["name"].capitalize()
         for d in dvorek["dishes"]:
             d["name"] = d["name"].capitalize()
-        print(f"  Dvořek Karlín: {len(dvorek['dishes'])} dishes")
+        print(f"  Dvorek Karlín: {len(dvorek['dishes'])} dishes")
     except Exception as e:
-        print(f"  Dvořek Karlín FAILED: {e}")
-        dvorek = {"date": today.isoformat(), "restaurant": "Dvořek Karlín", "available": False, "soup": None, "dishes": []}
+        print(f"  Dvorek Karlín FAILED: {e}")
+        dvorek = {"date": today.isoformat(), "restaurant": "Dvorek Karlín", "available": False, "soup": None, "dishes": []}
 
     # Fetch Jídlovice Karlín
     try:
