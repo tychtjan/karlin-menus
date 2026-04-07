@@ -15,10 +15,14 @@ CLAUDE_API_KEY = os.environ["CLAUDE_API_KEY"]
 
 CZECH_DAYS = ["pondělí", "úterý", "středa", "čtvrtek", "pátek", "sobota", "neděle"]
 
+# Test mode: send everything to a single test channel, skip canvases
+TEST_MODE = os.environ.get("TEST_MODE", "").lower() in ("1", "true", "yes")
+TEST_CHANNEL = "C0AG0MU6HD2"
+
 # Channel and canvas IDs
-CZ_CHANNEL = "C0AP80K2ETZ"
+CZ_CHANNEL = TEST_CHANNEL if TEST_MODE else "C0AP80K2ETZ"
 CZ_CANVAS = "F0APQG2RWV8"
-EN_CHANNEL = "C0AQAJFNG8Z"
+EN_CHANNEL = TEST_CHANNEL if TEST_MODE else "C0AQAJFNG8Z"
 EN_CANVAS = "F0AQ1CDG0TE"
 
 RESTAURANTS = [
@@ -214,8 +218,12 @@ def main():
     cz_canvas = build_czech_canvas(menus, date_str)
     print("--- Czech message built ---")
 
+    if TEST_MODE:
+        print("*** TEST MODE — posting to test channel, skipping canvases ***")
+
     slack_post_message(CZ_CHANNEL, cz_message)
-    slack_update_canvas(CZ_CANVAS, cz_canvas)
+    if not TEST_MODE:
+        slack_update_canvas(CZ_CANVAS, cz_canvas)
 
     # English (translate via Claude)
     print("--- Translating to English ---")
@@ -225,7 +233,8 @@ def main():
     en_canvas = build_english_canvas(en_message)
 
     slack_post_message(EN_CHANNEL, en_message)
-    slack_update_canvas(EN_CANVAS, en_canvas)
+    if not TEST_MODE:
+        slack_update_canvas(EN_CANVAS, en_canvas)
 
     print("Done!")
 
