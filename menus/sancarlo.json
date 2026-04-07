@@ -1,0 +1,19 @@
+{
+  "date": "2026-04-07",
+  "restaurant": "San Carlo",
+  "available": true,
+  "soup": {
+    "name": "Vellutata di Verza",
+    "price": 75
+  },
+  "dishes": [
+    {
+      "name": "Penne al Forno",
+      "price": 215
+    },
+    {
+      "name": "Orto e Sapori",
+      "price": 215
+    }
+  ]
+}

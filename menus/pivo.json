@@ -3,40 +3,40 @@
   "restaurant": "Pivo Karlín",
   "available": true,
   "soup": {
-    "name": "Špenátový krém se zakysanou smetanou *1a, 7, 9",
+    "name": "Špenátový krém se zakysanou smetanou",
     "price": 55
   },
   "dishes": [
     {
-      "name": "Kotleta s kostí, pimento padrone, patas bravas, olivová omáčka *3, 6, 7, 9, 12",
+      "name": "Kotleta s kostí, pimento padrone, patas bravas, olivová omáčka",
       "price": 275
     },
     {
-      "name": "Grilované kuřecí prso, zelenina na másle, lanýžové velouté *1a, 3, 7, 9, 12",
+      "name": "Grilované kuřecí prso, zelenina na másle, lanýžové velouté",
       "price": 205
     },
     {
-      "name": "Kuře na paprice, zakysaná smetana, dobšická kolínka *1a, 3, 7, 9, 12",
+      "name": "Kuře na paprice, zakysaná smetana, dobšická kolínka",
       "price": 204
     },
     {
-      "name": "Trhané ramínko s černými fazolemi, strouhaný sýr, pečené brambory*1a, 3, 6, 7, 9, 11, 12",
+      "name": "Trhané ramínko s černými fazolemi, strouhaný sýr, pečené brambory",
       "price": 204
     },
     {
-      "name": "VEG Smažená gouda, brambory s libečkovým máslem, tatarská omáčka *1a, 3, 7, 9, 10, 12",
+      "name": "VEG Smažená gouda, brambory s libečkovým máslem, tatarská omáčka",
       "price": 203
     },
     {
-      "name": "Zapečené řeznické brambory s prejtem, salát z kysaného zelí, hořčice *1a, 3, 7, 10, 12",
+      "name": "Zapečené řeznické brambory s prejtem, salát z kysaného zelí, hořčice",
       "price": 199
     },
     {
-      "name": "Salát z červené řepy s citrónovou šťávou *12",
+      "name": "Salát z červené řepy s citrónovou šťávou",
       "price": 49
     },
     {
-      "name": "Mrkvový koláč s citrónovou omáčkou *1a, 3, 7",
+      "name": "Mrkvový koláč s citrónovou omáčkou",
       "price": 59
     }
   ]
