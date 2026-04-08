@@ -1,5 +1,5 @@
 {
-  "date": "2026-04-07",
+  "date": "2026-04-08",
   "restaurant": "Jídlovice Karlín",
   "available": true,
   "soup": {
@@ -8,27 +8,7 @@
   },
   "dishes": [
     {
-      "name": "Lasagne bolognese, v omáčce z loupaných rajčat s listy rukoly a bazalkovým pestem",
-      "price": 195
-    },
-    {
-      "name": "Butter chicken, kousky kuřecího prsa v máslové omáčce s jasmínovou rýží a listy koriandru",
-      "price": 199
-    },
-    {
-      "name": "Smažený sýr, s vařeným bramborem s přepuštěným máslem, naší tatarkou a pažitkou",
-      "price": 185
-    },
-    {
-      "name": "Koprová omáčka s vařeným vejcem, s pečenými brambůrky grenaille a koprovým olejem",
-      "price": 185
-    },
-    {
-      "name": "Vepřová líčka na houbách, s mačkaným bramborem s vypečenou slaninou, vídeňskou cibulkou a listy petržele",
-      "price": 199
-    },
-    {
-      "name": "Kuřecí wrap, s čerstvou zeleninou, BBQ majonézou, hranolky a majonézou",
+      "name": "Italské rizoto z loupaných rajčat, s mascarpone, plátky kuřecího prsa, listy rukoly a bazalkovým pestem",
       "price": 199
     },
     {
@@ -48,7 +28,27 @@
       "price": 209
     },
     {
-      "name": "Karotková se zázvorem a slunečnicovými semínky",
+      "name": "Debrecínský vepřový guláš, s domácími špeclemi, vypečenou slaninou a listy petržele",
+      "price": 189
+    },
+    {
+      "name": "Kuřecí satay v omáčce hoisin, s koriandrovým pyré a marinovanou okurkou v sezamovém oleji a arašídovou salsou",
+      "price": 199
+    },
+    {
+      "name": "Pulled smoked pork poutine, trhaná uzená krkovice, silná masová šťáva, sýr gouda, marinovaná zelenina, uzená majonéza, hranolky",
+      "price": 195
+    },
+    {
+      "name": "Plněná cuketa s ragú z čočky beluga, tofu a zeleniny, v sýrovém bešamelu, s omáčkou z loupaných rajčat oliv a kapar, pečené brambůrky grenaille",
+      "price": 185
+    },
+    {
+      "name": "Žluté kari s tygřími krevetami a treskou, s karotkou, bambusem, s jasmínovou rýží a listy koriandru",
+      "price": 215
+    },
+    {
+      "name": "Bramborová polévka s houbami a čerstvou majoránkou",
       "price": 59
     }
   ]

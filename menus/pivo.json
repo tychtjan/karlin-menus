@@ -1,34 +1,34 @@
 {
-  "date": "2026-04-07",
+  "date": "2026-04-08",
   "restaurant": "Pivo Karlín",
   "available": true,
   "soup": {
-    "name": "Špenátový krém se zakysanou smetanou",
+    "name": "Vepřová gulášová s česnekem a majoránkou",
     "price": 55
   },
   "dishes": [
     {
-      "name": "Kotleta s kostí, pimento padrone, patas bravas, olivová omáčka",
+      "name": "Kuřecí satay, arašídová omáčka se zeleninou, sezamové nudle",
       "price": 275
     },
     {
-      "name": "Grilované kuřecí prso, zelenina na másle, lanýžové velouté",
-      "price": 205
+      "name": "Maďarský hovězí guláš s paprikou a klobásou, dobšická kolínka",
+      "price": 208
     },
     {
-      "name": "Kuře na paprice, zakysaná smetana, dobšická kolínka",
+      "name": "Smažená krkovice marinovaná v česneku, vařené brambory, kys. okurka",
       "price": 204
     },
     {
-      "name": "Trhané ramínko s černými fazolemi, strouhaný sýr, pečené brambory",
+      "name": "Kuřecí stehno ala bažant, špenát, bramborové knedlíky",
       "price": 204
     },
     {
-      "name": "VEG Smažená gouda, brambory s libečkovým máslem, tatarská omáčka",
+      "name": "VEG Poke bowl s pečeným květákem, mango, okurka, ředkvička, yamasa mayo",
       "price": 203
     },
     {
-      "name": "Zapečené řeznické brambory s prejtem, salát z kysaného zelí, hořčice",
+      "name": "Vepřové nudličky po sečuánsku s chilli a zeleninou, sezamová rýže",
       "price": 199
     },
     {

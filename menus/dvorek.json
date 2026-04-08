@@ -1,34 +1,34 @@
 {
-  "date": "2026-04-07",
+  "date": "2026-04-08",
   "restaurant": "Dvorek Karlín",
   "available": true,
   "soup": {
-    "name": "Kuřecí vývar /maso/nudle/zelenina",
+    "name": "Hovězí vývar /maso/nudle/zelenina",
     "price": 70
   },
   "dishes": [
     {
-      "name": "Frankfurtská polévka brambory/smetana/frankfurtský párek/mletá paprika/petrželka",
+      "name": "Tomatová polévka s bazalkou kořenová zelenina/rajčata/těstovinová rýže/sýr gran moravia/česnek",
       "price": 75
     },
     {
-      "name": "Kuřecí souvlaki pita chléb/kuřecí prso/tzatziki/řecký salát s fetou/kopr/řecké koření/pažitka",
+      "name": "Cornflake chicken strips máslová bramborová kaše/kuřecí prso/cornflakes/ sriracha/majonéza/mix salátů/pažitka",
       "price": 225
     },
     {
-      "name": "Vepřová pečeně se zázvorovou marinádou jasmínová rýže/zázvor/česnek/sweet chilli omáčka/nakládaná cuketa/sojová omáčka/koriandr/chilli/jarní cibulka",
-      "price": 225
-    },
-    {
-      "name": "Hovězí guláš náš karlovarský knedlík/hovězí ořech/rajčatový protlak/pivo/mletá paprika/majoránka/nakládaná cibule/křen/petrželka",
+      "name": "Švédské masové kuličky hranolky/mletý hovězí karabáček/mletá vepřová plec/hrášek/brusinky/oregano/česnek/sušená cibulka/smetana/pažitka",
       "price": 229
     },
     {
-      "name": "Smažený květák vařené grenaille/mix salátů/naše tatarka/pažitka",
+      "name": "Pečená treska s panang kari jasmínová rýže/panang kari pasta/kokosové mléko/sojová omáčka/zázvor/chilli/česnek/koriandr/jarní cibulka",
+      "price": 229
+    },
+    {
+      "name": "Fusilli s krémovou omáčkou z gorgonzoly květák/smetana/slunečnicová semínka/rozinky/kerblík",
       "price": 219
     },
     {
-      "name": "Grilovaný kozí sýr na salátu pečená řepa/nakládaná hruška/nakládaná cuketa/mix salátů/medovo hořčičný dresink/ořechy",
+      "name": "Grilovaný sýr halloumi na salátu cherry rajčátka/ředkvičky/kiwi/mix salátů/quinoa/citrusový dresink/semínka",
       "price": 219
     },
     {

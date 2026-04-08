@@ -1,43 +1,43 @@
 {
-  "date": "2026-04-07",
+  "date": "2026-04-08",
   "restaurant": "Tankovna Karlín",
   "available": true,
   "soup": {
-    "name": "Česnečka S Chlebovými Krutóny",
+    "name": "Bramborový Krém",
     "price": 45
   },
   "dishes": [
     {
-      "name": "Zapečené Brambory S Uzeným Masem, Kyselá Okurka",
-      "price": 179
+      "name": "Plněný Paprikový Lusk, Rajská Omáčka A Těstoviny",
+      "price": 189
     },
     {
-      "name": "Kuřecí Roláda Plněná Nádivkou, Kaše",
+      "name": "Kuřecí Směs Se Zeleninou A Rýží",
+      "price": 189
+    },
+    {
+      "name": "Hovězí Znojemská Pečeně S Houskovým Knedlíkem",
+      "price": 209
+    },
+    {
+      "name": "Gnocchi S Trhaným Králičím Masem, Baby Špenátem, Jemnou Smetanou A Paramazánem",
       "price": 199
     },
     {
-      "name": "Vepřové Kostky Na Paprice A Kolínka",
+      "name": "Sýrový Špíz - Čedar, Gouda A Niva, Vařený Brambor A Tatarka",
       "price": 189
     },
     {
-      "name": "Pečené Kuřecí Čtvrtky Na Divokém Koření, Dušená Rýže",
-      "price": 199
+      "name": "Šišky S Mákem A Máslem",
+      "price": 165
     },
     {
-      "name": "Penne S Bazalkovým Pestem, Sušenými Rajčaty A Parmazánem",
+      "name": "Grilovaný Steak Z Lososa, Středomořská Zelenina, Hořčičná Omáčka",
+      "price": 239
+    },
+    {
+      "name": "Mix Salátů S Gratinovaným Kozím Sýrem Na Toustu",
       "price": 179
-    },
-    {
-      "name": "Quesadilla S Trhaným Kuřecím A Vepřovým, Cibulkou, Bbq A Jalapeňos",
-      "price": 189
-    },
-    {
-      "name": "Medailonky Z Panenky S Domácí Pikantní Salsou, Opečené Brambory",
-      "price": 235
-    },
-    {
-      "name": "Variace Salátů S Velikonoční Vaječnou Tlačenkou, Cherry Rajčata A    Hořčično - Medová Zálivka",
-      "price": 189
     },
     {
       "name": "Dezert – Domácí Řez S Malinami A Čokoládovou Polevou",
