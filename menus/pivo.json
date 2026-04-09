@@ -1,34 +1,34 @@
 {
-  "date": "2026-04-08",
+  "date": "2026-04-09",
   "restaurant": "Pivo Karlín",
   "available": true,
   "soup": {
-    "name": "Vepřová gulášová s česnekem a majoránkou",
+    "name": "Zelná s paprikovou klobásou 1a, 3, 7, 9, 12",
     "price": 55
   },
   "dishes": [
     {
-      "name": "Kuřecí satay, arašídová omáčka se zeleninou, sezamové nudle",
+      "name": "Grilovaná panenka, smažené noky s parmazánem, omáčka marinara",
       "price": 275
     },
     {
-      "name": "Maďarský hovězí guláš s paprikou a klobásou, dobšická kolínka",
+      "name": "Znojemská hovězí pečeně s kyselou okurkou, houskové knedlíky",
       "price": 208
     },
     {
-      "name": "Smažená krkovice marinovaná v česneku, vařené brambory, kys. okurka",
+      "name": "Sekané biftečky, pepřová omáčka, brambory se zakysanou smetanou",
       "price": 204
     },
     {
-      "name": "Kuřecí stehno ala bažant, špenát, bramborové knedlíky",
+      "name": "Smažený holandský řízek, bramborová kaše, kyselá okurka",
       "price": 204
     },
     {
-      "name": "VEG Poke bowl s pečeným květákem, mango, okurka, ředkvička, yamasa mayo",
+      "name": "VEG Cizrnový falafel, hummus, rajčatový salát, sezamový jogurt, pita chléb",
       "price": 203
     },
     {
-      "name": "Vepřové nudličky po sečuánsku s chilli a zeleninou, sezamová rýže",
+      "name": "Kuřecí wok s ananasovou ponzu omáčkou a zeleninou, sezamová rýže",
       "price": 199
     },
     {

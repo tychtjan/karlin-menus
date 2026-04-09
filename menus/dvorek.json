@@ -1,34 +1,34 @@
 {
-  "date": "2026-04-08",
+  "date": "2026-04-09",
   "restaurant": "Dvorek Karlín",
   "available": true,
   "soup": {
-    "name": "Hovězí vývar /maso/nudle/zelenina",
+    "name": "Kuřecí vývar /maso/nudle/zelenina",
     "price": 70
   },
   "dishes": [
     {
-      "name": "Tomatová polévka s bazalkou kořenová zelenina/rajčata/těstovinová rýže/sýr gran moravia/česnek",
+      "name": "Brokolicový krém brambory/česnek/smetana/krutony/petrželka",
       "price": 75
     },
     {
-      "name": "Cornflake chicken strips máslová bramborová kaše/kuřecí prso/cornflakes/ sriracha/majonéza/mix salátů/pažitka",
+      "name": "Španělská paella s kuřecím masem rýže arborio/kuřecí maso/chorizo/paprika/červená cibule/ hrášek/mletá paprika/šafrán/citron/petrželka",
       "price": 225
     },
     {
-      "name": "Švédské masové kuličky hranolky/mletý hovězí karabáček/mletá vepřová plec/hrášek/brusinky/oregano/česnek/sušená cibulka/smetana/pažitka",
+      "name": "Yakisoba karbanátek hranolky/mletý hovězí karabáček/ústřicová omáčka/zázvor/česnek/kečup/smažená cibulka/jarní cibulka/koriandr/chilli/sezam",
       "price": 229
     },
     {
-      "name": "Pečená treska s panang kari jasmínová rýže/panang kari pasta/kokosové mléko/sojová omáčka/zázvor/chilli/česnek/koriandr/jarní cibulka",
+      "name": "Grilovaná vepřová panenka salát z pečených grenaillí/cherry rajče/rozmarýn/tymián/máslo/červená cibule/tvaroh/kopr/petrželka",
       "price": 229
     },
     {
-      "name": "Fusilli s krémovou omáčkou z gorgonzoly květák/smetana/slunečnicová semínka/rozinky/kerblík",
+      "name": "Caesar salát kuřecí prso/římský salát/ančovičky/sýr gran moravia/ slanina/majonéza/krutony",
       "price": 219
     },
     {
-      "name": "Grilovaný sýr halloumi na salátu cherry rajčátka/ředkvičky/kiwi/mix salátů/quinoa/citrusový dresink/semínka",
+      "name": "Zeleninová musaka brambory/cuketa/paprika/lilek/rajče/sýr feta/jogurt/oregano/česnek/petrželka",
       "price": 219
     },
     {

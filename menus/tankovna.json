@@ -1,42 +1,42 @@
 {
-  "date": "2026-04-08",
+  "date": "2026-04-09",
   "restaurant": "Tankovna Karlín",
   "available": true,
   "soup": {
-    "name": "Bramborový Krém",
+    "name": "Zelná S Klobásou",
     "price": 45
   },
   "dishes": [
     {
-      "name": "Plněný Paprikový Lusk, Rajská Omáčka A Těstoviny",
-      "price": 189
-    },
-    {
-      "name": "Kuřecí Směs Se Zeleninou A Rýží",
-      "price": 189
-    },
-    {
-      "name": "Hovězí Znojemská Pečeně S Houskovým Knedlíkem",
-      "price": 209
-    },
-    {
-      "name": "Gnocchi S Trhaným Králičím Masem, Baby Špenátem, Jemnou Smetanou A Paramazánem",
+      "name": "Uzená Krkovice, Bílé Zelí, Smažená Cibulka A Bramborový Knedlík",
       "price": 199
     },
     {
-      "name": "Sýrový Špíz - Čedar, Gouda A Niva, Vařený Brambor A Tatarka",
+      "name": "Kuřecí Řízek S Kaší A Rajčatovým Salátkem",
+      "price": 199
+    },
+    {
+      "name": "Maďarský Guláš S Houskovým Knedlíkem",
+      "price": 199
+    },
+    {
+      "name": "Drůbeží Rizoto Sypané Sýrem, Kyselá Okurka",
+      "price": 179
+    },
+    {
+      "name": "Burrito S Hovězím Mletým, Fazolemi, Kukuřící A Sýrem, Koriandrový Dip",
       "price": 189
     },
     {
-      "name": "Šišky S Mákem A Máslem",
+      "name": "Domácí Lívance S Borůvkami A Vanilkovým Krémem",
       "price": 165
     },
     {
-      "name": "Grilovaný Steak Z Lososa, Středomořská Zelenina, Hořčičná Omáčka",
+      "name": "Steak Z Kotlety Zapečený S Modrým Sýrem, Americké Brambory",
       "price": 239
     },
     {
-      "name": "Mix Salátů S Gratinovaným Kozím Sýrem Na Toustu",
+      "name": "Variace Salátů S Vejcem, Slaninou A Krutóny",
       "price": 179
     },
     {

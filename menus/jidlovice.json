@@ -1,5 +1,5 @@
 {
-  "date": "2026-04-08",
+  "date": "2026-04-09",
   "restaurant": "Jídlovice Karlín",
   "available": true,
   "soup": {
@@ -8,7 +8,15 @@
   },
   "dishes": [
     {
-      "name": "Italské rizoto z loupaných rajčat, s mascarpone, plátky kuřecího prsa, listy rukoly a bazalkovým pestem",
+      "name": "Masové kuličky, v krémové omáčce z karotky a dýně s pečenými brambůrky grenaille, brusinkami a zakysanou smetanou",
+      "price": 189
+    },
+    {
+      "name": "Kuřecí roláda s jarní nádivkou, s bramborovým pyré, máslovým hráškem a omáčkou z medvědího česneku a pažitkou",
+      "price": 195
+    },
+    {
+      "name": "Marinované kuřecí kousky, v teriyaki omáčce na smažené rýži se zeleninou, marinovanou zeleninou a listy koriandru",
       "price": 199
     },
     {
@@ -28,27 +36,19 @@
       "price": 209
     },
     {
-      "name": "Debrecínský vepřový guláš, s domácími špeclemi, vypečenou slaninou a listy petržele",
-      "price": 189
-    },
-    {
-      "name": "Kuřecí satay v omáčce hoisin, s koriandrovým pyré a marinovanou okurkou v sezamovém oleji a arašídovou salsou",
-      "price": 199
-    },
-    {
-      "name": "Pulled smoked pork poutine, trhaná uzená krkovice, silná masová šťáva, sýr gouda, marinovaná zelenina, uzená majonéza, hranolky",
+      "name": "Telecí játra na grilu, s pečeným bramborem, silnou šťávou s čerstvou majoránkou, coleslaw salátkem a domácí tatarkou",
       "price": 195
     },
     {
-      "name": "Plněná cuketa s ragú z čočky beluga, tofu a zeleniny, v sýrovém bešamelu, s omáčkou z loupaných rajčat oliv a kapar, pečené brambůrky grenaille",
-      "price": 185
-    },
-    {
-      "name": "Žluté kari s tygřími krevetami a treskou, s karotkou, bambusem, s jasmínovou rýží a listy koriandru",
+      "name": "Burger s trhaným hovězím, s fazolemi a kukuřicí, chipotle majonézou, kyselou okurkou, ledovým salátem a plátkem cheddaru s hranolky a majonézou z pečeného česneku",
       "price": 215
     },
     {
-      "name": "Bramborová polévka s houbami a čerstvou majoránkou",
+      "name": "Lasagne s čočkovým ragú, zapečené pod parmazánovým bešamelem s omáčkou z loupaných rajčat s bazalkovým pestem a listy rukoly",
+      "price": 185
+    },
+    {
+      "name": "Kulajda s lesními houbami",
       "price": 59
     }
   ]
