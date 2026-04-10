@@ -1,5 +1,5 @@
 {
-  "date": "2026-04-09",
+  "date": "2026-04-10",
   "restaurant": "Jídlovice Karlín",
   "available": true,
   "soup": {
@@ -7,18 +7,6 @@
     "price": 59
   },
   "dishes": [
-    {
-      "name": "Masové kuličky, v krémové omáčce z karotky a dýně s pečenými brambůrky grenaille, brusinkami a zakysanou smetanou",
-      "price": 189
-    },
-    {
-      "name": "Kuřecí roláda s jarní nádivkou, s bramborovým pyré, máslovým hráškem a omáčkou z medvědího česneku a pažitkou",
-      "price": 195
-    },
-    {
-      "name": "Marinované kuřecí kousky, v teriyaki omáčce na smažené rýži se zeleninou, marinovanou zeleninou a listy koriandru",
-      "price": 199
-    },
     {
       "name": "Kuřecí řízek, s naším bramborovým salátem nebo bramborovou kaší",
       "price": 189
@@ -36,19 +24,31 @@
       "price": 209
     },
     {
-      "name": "Telecí játra na grilu, s pečeným bramborem, silnou šťávou s čerstvou majoránkou, coleslaw salátkem a domácí tatarkou",
-      "price": 195
-    },
-    {
-      "name": "Burger s trhaným hovězím, s fazolemi a kukuřicí, chipotle majonézou, kyselou okurkou, ledovým salátem a plátkem cheddaru s hranolky a majonézou z pečeného česneku",
-      "price": 215
-    },
-    {
-      "name": "Lasagne s čočkovým ragú, zapečené pod parmazánovým bešamelem s omáčkou z loupaných rajčat s bazalkovým pestem a listy rukoly",
+      "name": "Plněný žampion portobello sýrovou nádivkou, s ragú z černé čočky se zeleninou, omáčkou z uzených rajčat a listy rukoly",
       "price": 185
     },
     {
-      "name": "Kulajda s lesními houbami",
+      "name": "Dukátové buchtičky, ve vanilkovém krému s lesním ovocem a moučkovým cukrem",
+      "price": 175
+    },
+    {
+      "name": "Kuřecí El Pastor, v kukuřičné tortille s grilovanou zeleninou, balkánským sýrem se zeleninovým salátem, a chipotle dresingem s avokádovým guacamole a listy koriandru",
+      "price": 199
+    },
+    {
+      "name": "Kuře na paprice, s máslovými kolínky, pečenou paprikou a pažitkou",
+      "price": 195
+    },
+    {
+      "name": "Hovězí chilli con carne, s fazolemi a kukuřicí s jasmínovou rýží, zakysanou smetanou a listy koriandru",
+      "price": 209
+    },
+    {
+      "name": "Steak z vepřové krkovice, s americkým bramborem, pečenými cherry rajčaty s fazolkami a slaninou s krémovou pepřovou omáčkou",
+      "price": 195
+    },
+    {
+      "name": "Tomatová  s marinovaným tofu čočkou  beluga",
       "price": 59
     }
   ]

@@ -1,19 +1,19 @@
 {
-  "date": "2026-04-09",
+  "date": "2026-04-10",
   "restaurant": "Diego Pivní Bar",
   "available": true,
   "soup": {
-    "name": "Francouzská cibulačka se sýrovým krutonem",
+    "name": "Harrira tradiční luštěninová polévka z maroka",
     "price": 45
   },
   "dishes": [
     {
-      "name": "Burrtio al pastor - tortilla plněná fazolemi, sýrem, rýží, salosu z grilovaného ananasu a vepřovým masem al pastor, podává se s nachos a salsou mexicana",
-      "price": 189
+      "name": "Mango habanero burger - hovezí burger s čedarem a mango habanero salsou, podává se s nachos a salsou mexicana",
+      "price": 195
     },
     {
-      "name": "Vepřový řízek s bramborovou kaší a kyselou okurkou",
-      "price": 189
+      "name": "Black beer ribs - vepřová žebra pečená na černém pivě, podávané s hranolkami a zelným salátem",
+      "price": 205
     },
     {
       "name": "Vege larnaca burger - grilovaný sýr typu halloumi se salsou z pečené papriky, cibulí, rajčaty a bylinkovou majonesou, podává se s nachos a zakysanou smetanou",

@@ -1,35 +1,35 @@
 {
-  "date": "2026-04-09",
+  "date": "2026-04-10",
   "restaurant": "Dvorek Karlín",
   "available": true,
   "soup": {
-    "name": "Kuřecí vývar /maso/nudle/zelenina",
+    "name": "Hovězí vývar /maso/nudle/zelenina",
     "price": 70
   },
   "dishes": [
     {
-      "name": "Brokolicový krém brambory/česnek/smetana/krutony/petrželka",
+      "name": "Zeleninový krém cuketa/lilek/česnek/paprika/brambory/smetana/oregano/petrželka",
       "price": 75
     },
     {
-      "name": "Španělská paella s kuřecím masem rýže arborio/kuřecí maso/chorizo/paprika/červená cibule/ hrášek/mletá paprika/šafrán/citron/petrželka",
+      "name": "Hovězí wok po sečuánsku jasmínová rýže/hovězí ořech/paprika/žampiony/pórek/sečuánský pepř/sojová omáčka/koriandr/chilli/jarní cibulka",
+      "price": 229
+    },
+    {
+      "name": "Sýrová sekaná máslová bramborová kaše/mletá vepřová plec/uzený eidam/čedar/kyselá okurka/petrželka",
       "price": 225
     },
     {
-      "name": "Yakisoba karbanátek hranolky/mletý hovězí karabáček/ústřicová omáčka/zázvor/česnek/kečup/smažená cibulka/jarní cibulka/koriandr/chilli/sezam",
-      "price": 229
+      "name": "Kuře cacciatore fusilli/kuřecí prso/olivy/sučená rajčata/smetana/sýr gran moravia/šalvěj/pažitka",
+      "price": 225
     },
     {
-      "name": "Grilovaná vepřová panenka salát z pečených grenaillí/cherry rajče/rozmarýn/tymián/máslo/červená cibule/tvaroh/kopr/petrželka",
-      "price": 229
-    },
-    {
-      "name": "Caesar salát kuřecí prso/římský salát/ančovičky/sýr gran moravia/ slanina/majonéza/krutony",
+      "name": "Lyonský salát s vepřovou panenkou grilovaná vepřová panenka sous vide/vejce/anglická slanina/cherry rajčata/mix salátů/medovo hořčičný dresinky/krutony",
       "price": 219
     },
     {
-      "name": "Zeleninová musaka brambory/cuketa/paprika/lilek/rajče/sýr feta/jogurt/oregano/česnek/petrželka",
-      "price": 219
+      "name": "Smažený sýr gouda vařené grenaille/naše tatarka/zeleninový salátek/pažitka",
+      "price": 215
     },
     {
       "name": "Grilovaný losos s holandskou omáčkou konfitované grenaille/chřest/rozmarýn/tymián/česnek/microgreens",

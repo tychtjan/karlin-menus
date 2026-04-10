@@ -1,46 +1,46 @@
 {
-  "date": "2026-04-09",
+  "date": "2026-04-10",
   "restaurant": "Tankovna Karlín",
   "available": true,
   "soup": {
-    "name": "Zelná S Klobásou",
+    "name": "Minestrone S Bazalkou",
     "price": 45
   },
   "dishes": [
     {
-      "name": "Uzená Krkovice, Bílé Zelí, Smažená Cibulka A Bramborový Knedlík",
-      "price": 199
-    },
-    {
-      "name": "Kuřecí Řízek S Kaší A Rajčatovým Salátkem",
-      "price": 199
-    },
-    {
-      "name": "Maďarský Guláš S Houskovým Knedlíkem",
-      "price": 199
-    },
-    {
-      "name": "Drůbeží Rizoto Sypané Sýrem, Kyselá Okurka",
-      "price": 179
-    },
-    {
-      "name": "Burrito S Hovězím Mletým, Fazolemi, Kukuřící A Sýrem, Koriandrový Dip",
+      "name": "Vepřová Játra Na Cibulce, Jemná Smetana, Šťouchaný Brambor",
       "price": 189
     },
     {
-      "name": "Domácí Lívance S Borůvkami A Vanilkovým Krémem",
-      "price": 165
+      "name": "Karbanátek S Kaší A Okurkovým Salátem\t",
+      "price": 189
     },
     {
-      "name": "Steak Z Kotlety Zapečený S Modrým Sýrem, Americké Brambory",
-      "price": 239
+      "name": "Vepřový Plátek Na Houbách S Dušenou Rýží",
+      "price": 199
     },
     {
-      "name": "Variace Salátů S Vejcem, Slaninou A Krutóny",
+      "name": "Segedínský Guláš S Houskovým Knedlíkem",
+      "price": 199
+    },
+    {
+      "name": "Krémové Rizoto S Pečenou Dýní, Sušenými Rajčaty A Parmazánem",
       "price": 179
     },
     {
-      "name": "Dezert – Domácí Řez S Malinami A Čokoládovou Polevou",
+      "name": "Bbq Křidýlka S Blue Cheese Dipem, Zelenina A Chléb",
+      "price": 189
+    },
+    {
+      "name": "Krkovice S Restovanými Fazolkami Na Slanině, Grenaille",
+      "price": 239
+    },
+    {
+      "name": "Variace Salátů S Červenou Řepou A Cottage Sýrem",
+      "price": 179
+    },
+    {
+      "name": "Dezert – Dle Denní Nabídky",
       "price": 65
     }
   ]
