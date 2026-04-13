@@ -1,43 +1,43 @@
 {
-  "date": "2026-04-10",
+  "date": "2026-04-13",
   "restaurant": "Tankovna Karlín",
   "available": true,
   "soup": {
-    "name": "Minestrone S Bazalkou",
+    "name": "Dýňovo - Karotkový Krém Se Zázvorem",
     "price": 45
   },
   "dishes": [
     {
-      "name": "Vepřová Játra Na Cibulce, Jemná Smetana, Šťouchaný Brambor",
+      "name": "Hovězí Líčka S Kořenovou Zeleninou Na Víně, Bramborová Kaše",
+      "price": 219
+    },
+    {
+      "name": "Mletý „Klobs“ Na Smetaně, Rýže",
       "price": 189
     },
     {
-      "name": "Karbanátek S Kaší A Okurkovým Salátem\t",
-      "price": 189
-    },
-    {
-      "name": "Vepřový Plátek Na Houbách S Dušenou Rýží",
-      "price": 199
-    },
-    {
-      "name": "Segedínský Guláš S Houskovým Knedlíkem",
-      "price": 199
-    },
-    {
-      "name": "Krémové Rizoto S Pečenou Dýní, Sušenými Rajčaty A Parmazánem",
+      "name": "Smažený Květák S Vařeným Bramborem A Tatarkou",
       "price": 179
     },
     {
-      "name": "Bbq Křidýlka S Blue Cheese Dipem, Zelenina A Chléb",
+      "name": "Pikantní Masová Směs Se Zeleninou A Hranolkami",
       "price": 189
     },
     {
-      "name": "Krkovice S Restovanými Fazolkami Na Slanině, Grenaille",
+      "name": "Gnocchi Quattro Formaggi Zdobené Rukolou",
+      "price": 189
+    },
+    {
+      "name": "Gratinovaný Kozí Sýr S Grilovanou Zeleninou A Toustem",
+      "price": 189
+    },
+    {
+      "name": "Medailonky Z Panenky S Medvědím Česnekem A Opečenými Brambory",
       "price": 239
     },
     {
-      "name": "Variace Salátů S Červenou Řepou A Cottage Sýrem",
-      "price": 179
+      "name": "Salát All Tonno",
+      "price": 189
     },
     {
       "name": "Dezert – Dle Denní Nabídky",

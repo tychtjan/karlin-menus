@@ -1,5 +1,5 @@
 {
-  "date": "2026-04-10",
+  "date": "2026-04-13",
   "restaurant": "Dvorek Karlín",
   "available": true,
   "soup": {
@@ -8,40 +8,28 @@
   },
   "dishes": [
     {
-      "name": "Zeleninový krém cuketa/lilek/česnek/paprika/brambory/smetana/oregano/petrželka",
+      "name": "Květák/brambory/česnek/smetana/skořice/mandle/kmín/koriandr",
       "price": 75
     },
     {
-      "name": "Hovězí wok po sečuánsku jasmínová rýže/hovězí ořech/paprika/žampiony/pórek/sečuánský pepř/sojová omáčka/koriandr/chilli/jarní cibulka",
+      "name": "Kuřecí tikka masala",
+      "price": 225
+    },
+    {
+      "name": "Vepřový řízek s jarním bramborovým salátem",
+      "price": 225
+    },
+    {
+      "name": "Hovězí v rajské omáčce",
       "price": 229
     },
     {
-      "name": "Sýrová sekaná máslová bramborová kaše/mletá vepřová plec/uzený eidam/čedar/kyselá okurka/petrželka",
-      "price": 225
-    },
-    {
-      "name": "Kuře cacciatore fusilli/kuřecí prso/olivy/sučená rajčata/smetana/sýr gran moravia/šalvěj/pažitka",
-      "price": 225
-    },
-    {
-      "name": "Lyonský salát s vepřovou panenkou grilovaná vepřová panenka sous vide/vejce/anglická slanina/cherry rajčata/mix salátů/medovo hořčičný dresinky/krutony",
+      "name": "Zapečená cuketa s tomatovou omáčkou",
       "price": 219
     },
     {
-      "name": "Smažený sýr gouda vařené grenaille/naše tatarka/zeleninový salátek/pažitka",
-      "price": 215
-    },
-    {
-      "name": "Grilovaný losos s holandskou omáčkou konfitované grenaille/chřest/rozmarýn/tymián/česnek/microgreens",
-      "price": 389
-    },
-    {
-      "name": "Korejský hovězí burger hranolky/mletý hovězí karabáček/asijské zelí/bulka/gochujang mayo/mix salátů/koriandr/chilli/jarní cibulka",
-      "price": 389
-    },
-    {
-      "name": "Čokoládová pěna s malinami hořká čokoláda/pistácie/smetana/vaječné žloutky/máta",
-      "price": 149
+      "name": "Grilovaný hermelín na salátu",
+      "price": 219
     }
   ]
 }

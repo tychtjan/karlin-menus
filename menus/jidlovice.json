@@ -1,5 +1,5 @@
 {
-  "date": "2026-04-10",
+  "date": "2026-04-13",
   "restaurant": "Jídlovice Karlín",
   "available": true,
   "soup": {
@@ -24,31 +24,31 @@
       "price": 209
     },
     {
-      "name": "Plněný žampion portobello sýrovou nádivkou, s ragú z černé čočky se zeleninou, omáčkou z uzených rajčat a listy rukoly",
-      "price": 185
-    },
-    {
-      "name": "Dukátové buchtičky, ve vanilkovém krému s lesním ovocem a moučkovým cukrem",
-      "price": 175
-    },
-    {
-      "name": "Kuřecí El Pastor, v kukuřičné tortille s grilovanou zeleninou, balkánským sýrem se zeleninovým salátem, a chipotle dresingem s avokádovým guacamole a listy koriandru",
-      "price": 199
-    },
-    {
-      "name": "Kuře na paprice, s máslovými kolínky, pečenou paprikou a pažitkou",
-      "price": 195
-    },
-    {
-      "name": "Hovězí chilli con carne, s fazolemi a kukuřicí s jasmínovou rýží, zakysanou smetanou a listy koriandru",
+      "name": "Vepřová panenka, s pečenými brambůrky grenaille, karotkou a máslovou dýní se žlutým kari a pažitkovým dipem",
       "price": 209
     },
     {
-      "name": "Steak z vepřové krkovice, s americkým bramborem, pečenými cherry rajčaty s fazolkami a slaninou s krémovou pepřovou omáčkou",
+      "name": "Kuřecí Cordon bleu plněný šunkou a sýrem, s bramborovým pyré, silnou šťávou, rajčatovo-okurkovou salsou a naší tatarkou",
+      "price": 199
+    },
+    {
+      "name": "Pomerančové kuře, s mangovo-okurkovou salsou, kokosovou rýží a listy koriandru",
+      "price": 199
+    },
+    {
+      "name": "Penne těstoviny, s žampiony, cuketou, zelenými olivami, bazalkovým pestem, slunečnicovými semínky a špenátem s trhanou mozzarellou a listy rukoly",
+      "price": 185
+    },
+    {
+      "name": "Vepřový trhaný krk, s fazolemi a kukuřicí s chedarem v pšeničné tortille, BBQ omáčkou, mexickým salátem a zakysanou smetanou",
       "price": 195
     },
     {
-      "name": "Tomatová  s marinovaným tofu čočkou  beluga",
+      "name": "Jelení guláš, s pečenou karotkou, slaninou a stříbrnými cibulkami s bramborovým knedlíkem",
+      "price": 209
+    },
+    {
+      "name": "Frankfurtská polévka, s párkem a bramborami",
       "price": 59
     }
   ]

@@ -1,42 +1,42 @@
 {
-  "date": "2026-04-10",
+  "date": "2026-04-13",
   "restaurant": "Pivo Karlín",
   "available": true,
   "soup": {
-    "name": "Brokolicový krém s cheddarem",
+    "name": "Kulajda s koprem a vejcem 1a, 3, 7, 9",
     "price": 55
   },
   "dishes": [
     {
-      "name": "Louisiana spicy burger- smažené kuře, cheddar, coleslaw, uzená mayo",
+      "name": "Řízek z panenky v panko strouhance, zelenina na červeném kari, rýže 1a, 3, 4, 5, 6, 11",
       "price": 275
     },
     {
-      "name": "Katův šleh z vepřového masa s paprikou a cibulí, pečená brambora, sýr",
+      "name": "Bramborové knedlíky plněné uzeným masem, kysané zelí, restovaná cibule 1a, 3, 7, 12",
       "price": 204
     },
     {
-      "name": "Tažená vepřová plec se šalotkou, mrkev na másle, vařené brambory",
-      "price": 204
-    },
-    {
-      "name": "Kuřecí stehenní řízek marinovaný v bylinkách, jarní bramb. salát s jogurtem",
+      "name": "Hamburská vepřová pečeně se šunkou a okurkou, houskové knedlíky 1a, 3, 6, 7, 9, 10, 12",
       "price": 205
     },
     {
-      "name": "VEG Dýňové rizoto s parmazánem, vínem a smetanou, grilovaná dýně, rukola",
+      "name": "Grilovaný kuřecí steak, libanonský tabouleh, citrónová zakysaná smetana 1a, 3, 7, 9, 11, 12",
+      "price": 204
+    },
+    {
+      "name": "VEG Bramborové noky, houbová omáčka s liškami, grilované houby, parmazán 1a, 3, 7",
       "price": 203
     },
     {
-      "name": "Butter chicken - kuře v máslové omáčce s rajčaty, jasmínová rýže",
+      "name": "Krůtí játra na iberijském špeku, olivy, sušená rajčata, bylinková tarhoňa 1a, 3, 6, 7, 9, 11, 14",
       "price": 199
     },
     {
-      "name": "Salát z červené řepy s citrónovou šťávou",
+      "name": "Salát coleslaw 12",
       "price": 49
     },
     {
-      "name": "Mrkvový koláč s citrónovou omáčkou",
+      "name": "Palačinka s banánem 1a, 3, 7",
       "price": 59
     }
   ]
