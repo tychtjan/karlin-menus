@@ -209,23 +209,55 @@ def fetch_jidlovice() -> dict:
     }
 
 
-def fetch_sancarlo() -> dict:
-    """Fetch weekly menu from San Carlo by reading their menu PNG with Claude vision."""
-    today = date.today()
-    today_str = today.strftime("%Y-%m-%d")
+# San Carlo pre-uploads several weekly menu images in one batch and cycles
+# which filename is current (e.g. menu.png = week 1, menu_1.png = week 2, ...).
+SANCARLO_MENU_CANDIDATES = ["menu.png"] + [f"menu_{i}.png" for i in range(1, 7)]
 
-    # Download the menu image
-    resp = requests.get("https://sancarlo.cz/menu.png", headers=HEADERS, timeout=15)
-    resp.raise_for_status()
-    image_b64 = base64.b64encode(resp.content).decode("utf-8")
 
-    # Use Claude vision to extract menu data
-    api_key = os.environ.get("CLAUDE_API_KEY")
-    if not api_key:
-        print("  San Carlo: CLAUDE_API_KEY not set, skipping")
-        return {"date": today_str, "restaurant": "San Carlo", "available": False, "soup": None, "dishes": []}
+def _parse_day_month(value) -> tuple | None:
+    """Parse a 'DD.MM' or 'DD.MM.' string into (day, month), or None."""
+    if not isinstance(value, str):
+        return None
+    match = re.match(r"\s*(\d{1,2})\.\s*(\d{1,2})\.?\s*$", value)
+    if not match:
+        return None
+    return int(match.group(1)), int(match.group(2))
 
-    client = anthropic.Anthropic(api_key=api_key)
+
+def menu_covers_today(valid_from, valid_to, today: date) -> bool:
+    """Check whether a menu's printed 'DD.MM – DD.MM' validity range covers today.
+
+    The images omit the year, so pick the year that puts the start date closest
+    to today, and let the end date roll into the next year for ranges that wrap
+    (e.g. 29.12 – 02.01).
+    """
+    parsed_from = _parse_day_month(valid_from)
+    parsed_to = _parse_day_month(valid_to)
+    if not parsed_from or not parsed_to:
+        return False
+
+    start_candidates = []
+    for year in (today.year - 1, today.year, today.year + 1):
+        try:
+            start_candidates.append(date(year, parsed_from[1], parsed_from[0]))
+        except ValueError:
+            pass
+    if not start_candidates:
+        return False
+    start = min(start_candidates, key=lambda d: abs((d - today).days))
+
+    try:
+        end = date(start.year, parsed_to[1], parsed_to[0])
+        if end < start:
+            end = date(start.year + 1, parsed_to[1], parsed_to[0])
+    except ValueError:
+        return False
+
+    return start <= today <= end
+
+
+def _extract_sancarlo_menu(client, image_b64: str) -> dict | None:
+    """Run Claude vision on one menu image; return parsed JSON or None."""
     message = client.messages.create(
         model="claude-haiku-4-5-20251001",
         max_tokens=1024,
@@ -240,11 +272,15 @@ def fetch_sancarlo() -> dict:
                     "type": "text",
                     "text": (
                         "Extract the menu items from this restaurant menu image. "
+                        "Under the MENU title there is a validity date range like '01.06 – 05.06.'. "
                         "Each item has an Italian name and a Czech description below it. "
                         "Return ONLY valid JSON in this exact format, nothing else:\n"
-                        '{"soup": {"name": "Italian name — Czech description", "price": 75}, '
+                        '{"valid_from": "01.06", "valid_to": "05.06", '
+                        '"soup": {"name": "Italian name — Czech description", "price": 75}, '
                         '"dishes": [{"name": "Italian name — Czech description", "price": 215}]}\n'
                         "Rules:\n"
+                        "- valid_from/valid_to are the DD.MM dates printed on the image; "
+                        "if no date range is visible, use null for both\n"
                         "- Combine the Italian name and Czech description with ' — ' separator\n"
                         "  Example: 'Penne al Forno — těstoviny penne, rajčata, mozzarella, bazalka'\n"
                         "- Prices are integers in CZK\n"
@@ -252,7 +288,7 @@ def fetch_sancarlo() -> dict:
                         "- Put pasta, pizza, and other items in dishes array\n"
                         "- Remove allergen numbers like (1, 7) from names\n"
                         "- If the menu image is blank or unreadable, return: "
-                        '{"soup": null, "dishes": []}'
+                        '{"valid_from": null, "valid_to": null, "soup": null, "dishes": []}'
                     ),
                 },
             ],
@@ -265,18 +301,56 @@ def fetch_sancarlo() -> dict:
         if raw.startswith("```"):
             raw = re.sub(r"^```(?:json)?\s*", "", raw)
             raw = re.sub(r"\s*```$", "", raw)
-        data = json.loads(raw)
+        return json.loads(raw)
     except (json.JSONDecodeError, IndexError) as e:
         print(f"  San Carlo: failed to parse Claude response: {e}")
-        return {"date": today_str, "restaurant": "San Carlo", "available": False, "soup": None, "dishes": []}
+        return None
 
-    return {
-        "date": today_str,
-        "restaurant": "San Carlo",
-        "available": bool(data.get("soup") or data.get("dishes")),
-        "soup": data.get("soup"),
-        "dishes": data.get("dishes", []),
-    }
+
+def fetch_sancarlo() -> dict:
+    """Fetch weekly menu from San Carlo by reading their menu PNGs with Claude vision.
+
+    Tries each candidate image, extracts the printed validity range, and uses
+    the one whose range covers today. Marks the menu unavailable if no image
+    covers today (e.g. the restaurant hasn't uploaded this week's menu yet).
+    """
+    today = date.today()
+    today_str = today.strftime("%Y-%m-%d")
+    unavailable = {"date": today_str, "restaurant": "San Carlo", "available": False, "soup": None, "dishes": []}
+
+    api_key = os.environ.get("CLAUDE_API_KEY")
+    if not api_key:
+        print("  San Carlo: CLAUDE_API_KEY not set, skipping")
+        return unavailable
+
+    client = anthropic.Anthropic(api_key=api_key)
+
+    for filename in SANCARLO_MENU_CANDIDATES:
+        resp = requests.get(f"https://sancarlo.cz/{filename}", headers=HEADERS, timeout=15)
+        if resp.status_code != 200 or "image" not in resp.headers.get("content-type", ""):
+            continue
+
+        image_b64 = base64.b64encode(resp.content).decode("utf-8")
+        data = _extract_sancarlo_menu(client, image_b64)
+        if data is None:
+            continue
+
+        valid_from, valid_to = data.get("valid_from"), data.get("valid_to")
+        if not menu_covers_today(valid_from, valid_to, today):
+            print(f"  San Carlo: {filename} covers {valid_from}–{valid_to}, not today — trying next")
+            continue
+
+        print(f"  San Carlo: using {filename} (valid {valid_from}–{valid_to})")
+        return {
+            "date": today_str,
+            "restaurant": "San Carlo",
+            "available": bool(data.get("soup") or data.get("dishes")),
+            "soup": data.get("soup"),
+            "dishes": data.get("dishes", []),
+        }
+
+    print("  San Carlo: no menu image covers today")
+    return unavailable
 
 
 def save_menu(filename: str, data: dict) -> None:
