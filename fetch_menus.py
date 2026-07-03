@@ -197,7 +197,7 @@ def fetch_jidlovice() -> dict:
 
         if category_id == 1 and soup_item is None:
             soup_item = {"name": full_name, "price": price}
-        elif price is not None:
+        elif category_id == 4 and price is not None:
             dishes.append({"name": full_name, "price": price})
 
     return {
