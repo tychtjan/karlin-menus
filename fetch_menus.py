@@ -19,6 +19,11 @@ HEADERS = {"User-Agent": USER_AGENT}
 CZECH_DAYS = ["pondělí", "úterý", "středa", "čtvrtek", "pátek", "sobota", "neděle"]
 
 
+def collapse_whitespace(text: str) -> str:
+    """Collapse newlines/indentation from HTML source into single spaces."""
+    return re.sub(r"\s+", " ", text).strip()
+
+
 def fetch_menicka(url: str, restaurant_name: str) -> dict:
     """Fetch and parse a daily menu from menicka.cz."""
     today = date.today()
@@ -26,9 +31,10 @@ def fetch_menicka(url: str, restaurant_name: str) -> dict:
 
     resp = requests.get(url, headers=HEADERS, timeout=15)
     resp.raise_for_status()
-    resp.encoding = "windows-1250"
 
-    soup_html = BeautifulSoup(resp.text, "html.parser")
+    # Parse from raw bytes so BeautifulSoup picks up the charset declared in
+    # the HTML (menicka.cz switched from windows-1250 to utf-8)
+    soup_html = BeautifulSoup(resp.content, "html.parser")
 
     # menicka.cz structure:
     # <div class="menicka">
@@ -79,7 +85,7 @@ def fetch_menicka(url: str, restaurant_name: str) -> dict:
         for em in polozka.find_all("em"):
             em.decompose()
 
-        item_text = polozka.get_text(strip=True)
+        item_text = collapse_whitespace(polozka.get_text(" ", strip=True))
         price = None
         if cena:
             digits = re.search(r"(\d+)", cena.get_text(strip=True))

@@ -4,7 +4,25 @@
 import unittest
 from datetime import date
 
-from fetch_menus import menu_covers_today
+from fetch_menus import collapse_whitespace, menu_covers_today
+
+
+class TestCollapseWhitespace(unittest.TestCase):
+    def test_collapses_newlines_and_indentation(self):
+        raw = "Kuřecí\n                               kaldoun\n     s\n  nudlemi"
+        self.assertEqual(collapse_whitespace(raw), "Kuřecí kaldoun s nudlemi")
+
+    def test_strips_leading_and_trailing_whitespace(self):
+        self.assertEqual(collapse_whitespace("  Panna cotta \n"), "Panna cotta")
+
+    def test_plain_text_unchanged(self):
+        self.assertEqual(
+            collapse_whitespace("Caprese salát se sýrem stracciatella"),
+            "Caprese salát se sýrem stracciatella",
+        )
+
+    def test_empty_string(self):
+        self.assertEqual(collapse_whitespace(""), "")
 
 
 class TestMenuCoversToday(unittest.TestCase):
