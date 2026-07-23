@@ -36,6 +36,37 @@ RESTAURANTS = [
 
 DIVIDER = "───────────────────────────────────"
 
+# Characters that show up when UTF-8 Czech is mis-decoded (e.g. as windows-1250)
+# but never appear in legitimate menu text
+MOJIBAKE_CHARS = set("ĹĺĂăĽľÄ�")
+
+
+def find_format_problem(text):
+    """Return a description of a formatting problem in text, or None if clean."""
+    if any(ch in MOJIBAKE_CHARS for ch in text):
+        return "mojibake (encoding corruption)"
+    if "\n" in text or "\t" in text or "  " in text:
+        return "raw HTML whitespace"
+    return None
+
+
+def validate_menus(menus):
+    """Failsafe: mark restaurants with corrupted text unavailable instead of posting garbage."""
+    for menu in menus:
+        data = menu["data"]
+        if not data.get("available"):
+            continue
+        soup = data.get("soup")
+        items = ([soup] if soup else []) + data.get("dishes", [])
+        for item in items:
+            problem = find_format_problem(item.get("name") or "")
+            if problem:
+                sample = (item.get("name") or "")[:60]
+                print(f'::warning::{menu["name"]}: {problem} in "{sample}" — marking unavailable')
+                data["available"] = False
+                break
+    return menus
+
 
 def load_menus():
     """Load all menu JSON files and validate dates."""
@@ -136,6 +167,11 @@ def translate_to_english(czech_message):
                 "Replace 'Obědová menu' with 'Lunch Menus'. "
                 "Replace 'Otevřít v canvasu' with 'Open in canvas'. "
                 "Replace 'Menu dnes není k dispozici' with 'No menu available today'. "
+                "FAILSAFE: before translating, check the input is well-formed. If it "
+                "contains encoding corruption (garbled sequences like 'KuĹ™ecĂ­' instead "
+                "of proper Czech like 'Kuřecí') or broken formatting (words split across "
+                "lines mid-sentence, stray indentation), do NOT translate — output exactly "
+                "'VALIDATION_FAILED: <short reason>' and nothing else. "
                 "Output ONLY the translated message, nothing else.\n\n"
                 f"{czech_message}"
             ),
@@ -212,7 +248,7 @@ def main():
         return
 
     date_str = f"{today.day}.{today.month}.{today.year}"
-    menus = load_menus()
+    menus = validate_menus(load_menus())
 
     # Czech
     cz_message = build_czech_message(menus, date_str)
@@ -229,6 +265,9 @@ def main():
     # English (translate via Claude)
     print("--- Translating to English ---")
     en_message = translate_to_english(cz_message)
+    if en_message.strip().startswith("VALIDATION_FAILED"):
+        print(f"::error::Translator rejected the menu content: {en_message.strip()}")
+        sys.exit(1)
     # Fix the canvas link for English version
     en_message = en_message.replace(CZ_CANVAS, EN_CANVAS)
     en_canvas = build_english_canvas(en_message)
