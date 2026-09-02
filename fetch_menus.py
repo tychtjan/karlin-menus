@@ -5,7 +5,7 @@ import base64
 import json
 import os
 import re
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 
 import anthropic
 import requests
@@ -215,9 +215,39 @@ def fetch_jidlovice() -> dict:
     }
 
 
-# San Carlo pre-uploads several weekly menu images in one batch and cycles
-# which filename is current (e.g. menu.png = week 1, menu_1.png = week 2, ...).
-SANCARLO_MENU_CANDIDATES = ["menu.png"] + [f"menu_{i}.png" for i in range(1, 7)]
+# San Carlo pre-uploads a batch of weekly menu images in one go, one image per
+# week: menu.png is the first week of the batch, menu_1.png the next, and so on.
+# The batch size varies (the July 2026 batch was menu.png..menu_10.png), so the
+# filenames are discovered at runtime instead of hardcoded — a fixed list silently
+# stops finding menus as soon as the current week moves past its last entry.
+SANCARLO_BASE_URL = "https://www.sancarlo.cz"
+SANCARLO_MAX_CANDIDATES = 60  # ~a year of weekly menus; hard stop on probing
+SANCARLO_MISS_STREAK = 3  # consecutive 404s that end the probe
+
+
+def sancarlo_image_name(index: int) -> str:
+    """Filename of the Nth weekly menu image (0 -> menu.png, 1 -> menu_1.png)."""
+    return "menu.png" if index == 0 else f"menu_{index}.png"
+
+
+def discover_sancarlo_indices(image_exists, max_candidates: int = SANCARLO_MAX_CANDIDATES,
+                              miss_streak: int = SANCARLO_MISS_STREAK) -> list:
+    """Probe menu.png, menu_1.png, ... and return the indices that are published.
+
+    Probing continues past a miss so a single gap in the batch does not cut the
+    scan short, and stops once `miss_streak` consecutive images are missing.
+    """
+    found = []
+    misses = 0
+    for index in range(max_candidates):
+        if image_exists(index):
+            found.append(index)
+            misses = 0
+            continue
+        misses += 1
+        if misses >= miss_streak:
+            break
+    return found
 
 
 def _parse_day_month(value) -> tuple | None:
@@ -230,6 +260,34 @@ def _parse_day_month(value) -> tuple | None:
     return int(match.group(1)), int(match.group(2))
 
 
+def resolve_menu_start(valid_from, today: date) -> date | None:
+    """Turn a printed 'DD.MM' start date into a real date, or None if unusable.
+
+    The images omit the year, so pick the year that puts the start date closest
+    to today.
+    """
+    parsed = _parse_day_month(valid_from)
+    if not parsed:
+        return None
+
+    candidates = []
+    for year in (today.year - 1, today.year, today.year + 1):
+        try:
+            candidates.append(date(year, parsed[1], parsed[0]))
+        except ValueError:
+            pass
+    if not candidates:
+        return None
+    return min(candidates, key=lambda d: abs((d - today).days))
+
+
+def weeks_between(start: date, today: date) -> int:
+    """Whole weeks from the week containing `start` to the week containing `today`."""
+    start_monday = start - timedelta(days=start.weekday())
+    today_monday = today - timedelta(days=today.weekday())
+    return (today_monday - start_monday).days // 7
+
+
 def menu_covers_today(valid_from, valid_to, today: date) -> bool:
     """Check whether a menu's printed 'DD.MM – DD.MM' validity range covers today.
 
@@ -237,20 +295,13 @@ def menu_covers_today(valid_from, valid_to, today: date) -> bool:
     to today, and let the end date roll into the next year for ranges that wrap
     (e.g. 29.12 – 02.01).
     """
-    parsed_from = _parse_day_month(valid_from)
     parsed_to = _parse_day_month(valid_to)
-    if not parsed_from or not parsed_to:
+    if not parsed_to:
         return False
 
-    start_candidates = []
-    for year in (today.year - 1, today.year, today.year + 1):
-        try:
-            start_candidates.append(date(year, parsed_from[1], parsed_from[0]))
-        except ValueError:
-            pass
-    if not start_candidates:
+    start = resolve_menu_start(valid_from, today)
+    if not start:
         return False
-    start = min(start_candidates, key=lambda d: abs((d - today).days))
 
     try:
         end = date(start.year, parsed_to[1], parsed_to[0])
@@ -313,12 +364,75 @@ def _extract_sancarlo_menu(client, image_b64: str) -> dict | None:
         return None
 
 
+def select_sancarlo_index(read_range, indices, today: date):
+    """Pick the index of the menu image whose printed range covers today.
+
+    `read_range(index)` returns that image's (valid_from, valid_to) pair, or None
+    if it could not be read. Reading an image costs a vision call, so instead of
+    checking every week in the batch we read the first one, work out how many
+    weeks separate it from today, and jump straight at that index — falling back
+    to a plain scan if the batch is not perfectly consecutive.
+    """
+    if not indices:
+        return None
+
+    seen = {}
+
+    def covers_today(index):
+        if index not in seen:
+            seen[index] = read_range(index)
+        printed = seen[index]
+        return bool(printed) and menu_covers_today(printed[0], printed[1], today)
+
+    anchor = indices[0]
+    if covers_today(anchor):
+        return anchor
+
+    anchor_start = resolve_menu_start((seen[anchor] or (None, None))[0], today)
+    if anchor_start:
+        target = anchor + weeks_between(anchor_start, today)
+        if target in indices and covers_today(target):
+            return target
+
+    for index in indices:
+        if index in seen:
+            continue
+        if covers_today(index):
+            return index
+
+    return None
+
+
+def _sancarlo_image_exists(index: int) -> bool:
+    """Cheap HEAD probe for one menu image, so discovery costs no downloads."""
+    url = f"{SANCARLO_BASE_URL}/{sancarlo_image_name(index)}"
+    try:
+        resp = requests.head(url, headers=HEADERS, timeout=15)
+    except requests.RequestException as e:
+        print(f"  San Carlo: probing {sancarlo_image_name(index)} failed: {e}")
+        return False
+    return resp.status_code == 200 and "image" in resp.headers.get("content-type", "")
+
+
+def _download_sancarlo_image(index: int) -> bytes | None:
+    """Download one menu image, or None if it is missing or not an image."""
+    url = f"{SANCARLO_BASE_URL}/{sancarlo_image_name(index)}"
+    try:
+        resp = requests.get(url, headers=HEADERS, timeout=15)
+    except requests.RequestException as e:
+        print(f"  San Carlo: downloading {sancarlo_image_name(index)} failed: {e}")
+        return None
+    if resp.status_code != 200 or "image" not in resp.headers.get("content-type", ""):
+        return None
+    return resp.content
+
+
 def fetch_sancarlo() -> dict:
     """Fetch weekly menu from San Carlo by reading their menu PNGs with Claude vision.
 
-    Tries each candidate image, extracts the printed validity range, and uses
-    the one whose range covers today. Marks the menu unavailable if no image
-    covers today (e.g. the restaurant hasn't uploaded this week's menu yet).
+    Discovers how many weekly images are published, picks the one whose printed
+    validity range covers today, and marks the menu unavailable if none does
+    (e.g. the restaurant hasn't uploaded this week's menu yet).
     """
     today = date.today()
     today_str = today.strftime("%Y-%m-%d")
@@ -329,34 +443,43 @@ def fetch_sancarlo() -> dict:
         print("  San Carlo: CLAUDE_API_KEY not set, skipping")
         return unavailable
 
+    indices = discover_sancarlo_indices(_sancarlo_image_exists)
+    if not indices:
+        print("  San Carlo: no menu images published")
+        return unavailable
+    print(f"  San Carlo: {len(indices)} weekly images published "
+          f"({sancarlo_image_name(indices[0])}…{sancarlo_image_name(indices[-1])})")
+
     client = anthropic.Anthropic(api_key=api_key)
+    menus = {}
 
-    for filename in SANCARLO_MENU_CANDIDATES:
-        resp = requests.get(f"https://sancarlo.cz/{filename}", headers=HEADERS, timeout=15)
-        if resp.status_code != 200 or "image" not in resp.headers.get("content-type", ""):
-            continue
-
-        image_b64 = base64.b64encode(resp.content).decode("utf-8")
-        data = _extract_sancarlo_menu(client, image_b64)
+    def read_range(index):
+        image = _download_sancarlo_image(index)
+        if image is None:
+            return None
+        data = _extract_sancarlo_menu(client, base64.b64encode(image).decode("utf-8"))
         if data is None:
-            continue
+            return None
+        menus[index] = data
+        print(f"  San Carlo: {sancarlo_image_name(index)} covers "
+              f"{data.get('valid_from')}–{data.get('valid_to')}")
+        return data.get("valid_from"), data.get("valid_to")
 
-        valid_from, valid_to = data.get("valid_from"), data.get("valid_to")
-        if not menu_covers_today(valid_from, valid_to, today):
-            print(f"  San Carlo: {filename} covers {valid_from}–{valid_to}, not today — trying next")
-            continue
+    index = select_sancarlo_index(read_range, indices, today)
+    if index is None:
+        print("  San Carlo: no menu image covers today")
+        return unavailable
 
-        print(f"  San Carlo: using {filename} (valid {valid_from}–{valid_to})")
-        return {
-            "date": today_str,
-            "restaurant": "San Carlo",
-            "available": bool(data.get("soup") or data.get("dishes")),
-            "soup": data.get("soup"),
-            "dishes": data.get("dishes", []),
-        }
-
-    print("  San Carlo: no menu image covers today")
-    return unavailable
+    data = menus[index]
+    print(f"  San Carlo: using {sancarlo_image_name(index)} "
+          f"(valid {data.get('valid_from')}–{data.get('valid_to')})")
+    return {
+        "date": today_str,
+        "restaurant": "San Carlo",
+        "available": bool(data.get("soup") or data.get("dishes")),
+        "soup": data.get("soup"),
+        "dishes": data.get("dishes", []),
+    }
 
 
 def save_menu(filename: str, data: dict) -> None:
