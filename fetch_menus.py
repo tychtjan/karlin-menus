@@ -146,14 +146,14 @@ def fetch_tankovna() -> dict:
     soup_item = None
     if soup_data:
         soup_item = {
-            "name": soup_data.get("name", "").title(),
+            "name": collapse_whitespace(soup_data.get("name", "")).title(),
             "price": soup_data.get("price"),
         }
 
     dishes = []
     for dish in result.get("dishes", []):
         dishes.append({
-            "name": dish.get("name", "").title(),
+            "name": collapse_whitespace(dish.get("name", "")).title(),
             "price": dish.get("price"),
         })
 

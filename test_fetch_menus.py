@@ -3,10 +3,12 @@
 
 import unittest
 from datetime import date
+from unittest.mock import MagicMock, patch
 
 from fetch_menus import (
     collapse_whitespace,
     discover_sancarlo_indices,
+    fetch_tankovna,
     menu_covers_today,
     resolve_menu_start,
     sancarlo_image_name,
@@ -31,6 +33,23 @@ class TestCollapseWhitespace(unittest.TestCase):
 
     def test_empty_string(self):
         self.assertEqual(collapse_whitespace(""), "")
+
+
+class TestFetchTankovna(unittest.TestCase):
+    def test_strips_stray_whitespace_from_cms_names(self):
+        payload = {
+            "result": {
+                "soup": {"name": "hovězí  vývar\n", "price": 45},
+                "dishes": [{"name": "fish and chips s hranolkami\t", "price": 209}],
+            }
+        }
+        resp = MagicMock()
+        resp.json.return_value = payload
+        with patch("fetch_menus.requests.get", return_value=resp):
+            menu = fetch_tankovna()
+
+        self.assertEqual(menu["soup"]["name"], "Hovězí Vývar")
+        self.assertEqual(menu["dishes"][0]["name"], "Fish And Chips S Hranolkami")
 
 
 class TestMenuCoversToday(unittest.TestCase):
