@@ -1,0 +1,16 @@
+fetch_menus.py
+  h_eecc74926a9b46 149,156
+test_fetch_menus.py
+  h_eecc74926a9b46 6,11,38-54
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "af59a1e7e37ba4cc3d2f98172ef195bf3db8839e",
+  "prompts": {},
+  "humans": {
+    "h_eecc74926a9b46": {
+      "author": "Jan Tychtl <jan.tychtl@gooddata.com>"
+    }
+  }
+}
