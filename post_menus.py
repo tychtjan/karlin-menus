@@ -6,8 +6,11 @@ import os
 import sys
 from datetime import date
 
-import anthropic
 import requests
+
+from menu_format import LABELS, build_canvas, build_message
+from menu_translate import TranslationError, translate_menus
+from slack_blocks import build_blocks, chunk_blocks
 
 MENUS_DIR = os.path.join(os.path.dirname(__file__), "menus")
 SLACK_TOKEN = os.environ["SLACK_BOT_TOKEN"]
@@ -34,8 +37,6 @@ RESTAURANTS = [
     {"file": "jidlovice.json", "emoji": ":stew:", "name": "Jídlovice Karlín"},
 ]
 
-DIVIDER = "───────────────────────────────────"
-
 # Characters that show up when UTF-8 Czech is mis-decoded (e.g. as windows-1250)
 # but never appear in legitimate menu text
 MOJIBAKE_CHARS = set("ĹĺĂăĽľÄ�")
@@ -57,7 +58,7 @@ def validate_menus(menus):
         if not data.get("available"):
             continue
         soup = data.get("soup")
-        items = ([soup] if soup else []) + data.get("dishes", [])
+        items = ([soup] if soup else []) + (data.get("dishes") or [])
         for item in items:
             problem = find_format_problem(item.get("name") or "")
             if problem:
@@ -85,140 +86,38 @@ def load_menus():
     return menus
 
 
-def format_restaurant_mrkdwn(menu, soup_label="Polévka", currency="Kč"):
-    """Format a single restaurant's menu in Slack mrkdwn."""
-    data = menu["data"]
-    lines = [f'{menu["emoji"]} *{menu["name"]}*']
-
-    if not data.get("available"):
-        lines.append("Menu dnes není k dispozici" if currency == "Kč" else "No menu available today")
-        return "\n".join(lines)
-
-    soup = data.get("soup")
-    if soup:
-        price_str = f" • *{soup['price']} {currency}*" if soup.get("price") else ""
-        lines.append(f"_{soup_label}:_ {soup['name']}{price_str}")
-
-    for i, dish in enumerate(data.get("dishes", []), 1):
-        price_str = f" • *{dish['price']} {currency}*" if dish.get("price") else ""
-        lines.append(f"{i}. {dish['name']}{price_str}")
-
-    return "\n".join(lines)
-
-
-def format_restaurant_canvas(menu, soup_label="Polévka", currency="Kč"):
-    """Format a single restaurant's menu in canvas Markdown."""
-    data = menu["data"]
-    lines = [f'## {menu["emoji"]} {menu["name"]}', ""]
-
-    if not data.get("available"):
-        lines.append("Menu dnes není k dispozici" if currency == "Kč" else "No menu available today")
-        return "\n".join(lines)
-
-    soup = data.get("soup")
-    if soup:
-        price_str = f" • **{soup['price']} {currency}**" if soup.get("price") else ""
-        lines.append(f"*{soup_label}:* {soup['name']}{price_str}")
-        lines.append("")
-
-    for i, dish in enumerate(data.get("dishes", []), 1):
-        price_str = f" • **{dish['price']} {currency}**" if dish.get("price") else ""
-        lines.append(f"{i}. {dish['name']}{price_str}")
-
-    return "\n".join(lines)
-
-
-def build_czech_message(menus, date_str):
-    """Build the full Czech Slack message."""
-    parts = [f":knife_fork_plate: *Obědová menu — {date_str}*", ""]
-    for menu in menus:
-        parts.append(DIVIDER)
-        parts.append(format_restaurant_mrkdwn(menu, "Polévka", "Kč"))
-        parts.append("")
-    parts.append(DIVIDER)
-    parts.append(f":bookmark: <https://gooddata.slack.com/docs/T02G0PHRH/{CZ_CANVAS}|Otevřít v canvasu>")
-    return "\n".join(parts)
-
-
-def build_czech_canvas(menus, date_str):
-    """Build the full Czech canvas content."""
-    parts = [f"# :knife_fork_plate: Obědová menu — {date_str}", ""]
-    for menu in menus:
-        parts.append(format_restaurant_canvas(menu, "Polévka", "Kč"))
-        parts.append("")
-    return "\n".join(parts)
-
-
-def translate_to_english(czech_message):
-    """Use Claude API to translate the Czech menu message to English."""
-    client = anthropic.Anthropic(api_key=CLAUDE_API_KEY)
-    response = client.messages.create(
-        model="claude-haiku-4-5-20251001",
-        max_tokens=4096,
-        messages=[{
-            "role": "user",
-            "content": (
-                "Translate this Czech lunch menu to English. "
-                "Keep restaurant names as-is (they are proper nouns). "
-                "Translate dish names naturally using common English food terms "
-                "(e.g. 'svíčková' → 'Marinated beef sirloin with cream sauce'). "
-                "Keep the exact same formatting (numbered lists, bullet style, emojis, dividers). "
-                "Replace 'Kč' with 'CZK'. Replace 'Polévka' with 'Soup'. "
-                "Replace 'Obědová menu' with 'Lunch Menus'. "
-                "Replace 'Otevřít v canvasu' with 'Open in canvas'. "
-                "Replace 'Menu dnes není k dispozici' with 'No menu available today'. "
-                "FAILSAFE: before translating, check the input is well-formed. If it "
-                "contains encoding corruption (garbled sequences like 'KuĹ™ecĂ­' instead "
-                "of proper Czech like 'Kuřecí') or broken formatting (words split across "
-                "lines mid-sentence, stray indentation), do NOT translate — output exactly "
-                "'VALIDATION_FAILED: <short reason>' and nothing else. "
-                "Output ONLY the translated message, nothing else.\n\n"
-                f"{czech_message}"
-            ),
-        }],
-    )
-    return response.content[0].text
-
-
-def build_english_canvas(english_message):
-    """Convert English Slack mrkdwn to canvas Markdown."""
-    # Transform mrkdwn bold (*text*) to markdown bold (**text**)
-    # and italic (_text_) to markdown italic (*text*)
-    lines = english_message.split("\n")
-    canvas_lines = []
-    for line in lines:
-        if line.startswith(":knife_fork_plate:"):
-            # Title line: convert to H1
-            title = line.replace(":knife_fork_plate: *", "# :knife_fork_plate: ").rstrip("*")
-            canvas_lines.append(title)
-        elif line.startswith(DIVIDER):
-            continue  # skip dividers in canvas
-        elif line.startswith(":bookmark:"):
-            continue  # skip footer in canvas
-        elif any(line.startswith(f"{e} *") for e in [":beer:", ":hot_pepper:", ":beers:", ":deciduous_tree:", ":stew:", ":pizza:"]):
-            # Restaurant header: convert to H2
-            header = line.replace(" *", " ").rstrip("*")
-            canvas_lines.append("")
-            canvas_lines.append(f"## {header}")
-            canvas_lines.append("")
-        else:
-            canvas_lines.append(line)
-    return "\n".join(canvas_lines)
-
-
-def slack_post_message(channel, text):
-    """Post a message to a Slack channel."""
+def slack_post_message(channel, text, blocks=None):
+    """Post a message to a Slack channel; text is the notification fallback when blocks are given."""
+    payload = {"channel": channel, "text": text, "unfurl_links": False, "unfurl_media": False}
+    if blocks:
+        payload["blocks"] = blocks
     resp = requests.post(
         "https://slack.com/api/chat.postMessage",
         headers={"Authorization": f"Bearer {SLACK_TOKEN}", "Content-Type": "application/json"},
-        json={"channel": channel, "text": text, "unfurl_links": False, "unfurl_media": False},
+        json=payload,
         timeout=30,
     )
     result = resp.json()
     if not result.get("ok"):
-        print(f"ERROR posting to {channel}: {result.get('error')}")
+        detail = result.get("errors") or result.get("response_metadata") or ""
+        print(f"ERROR posting to {channel}: {result.get('error')} {detail}".rstrip())
         return False
     print(f"Posted to {channel}")
+    return True
+
+
+def post_menu(channel, menus, date_str, labels, canvas_id):
+    """Post the menu as table blocks; if Slack rejects the first message, post plain mrkdwn instead."""
+    title = f"{labels['title']} — {date_str}"
+    chunks = chunk_blocks(build_blocks(menus, date_str, labels, canvas_id))
+    for i, chunk in enumerate(chunks):
+        if slack_post_message(channel, title, chunk):
+            continue
+        if i > 0:
+            print(f"::error::Only part of the menu was posted to {channel}")
+            return False
+        print("Table blocks rejected, falling back to mrkdwn")
+        return slack_post_message(channel, build_message(menus, date_str, labels, canvas_id))
     return True
 
 
@@ -251,30 +150,31 @@ def main():
     menus = validate_menus(load_menus())
 
     # Czech
-    cz_message = build_czech_message(menus, date_str)
-    cz_canvas = build_czech_canvas(menus, date_str)
-    print("--- Czech message built ---")
+    cz_canvas = build_canvas(menus, date_str, LABELS["cs"])
 
     if TEST_MODE:
         print("*** TEST MODE — posting to test channel, skipping canvases ***")
 
-    slack_post_message(CZ_CHANNEL, cz_message)
+    results = [post_menu(CZ_CHANNEL, menus, date_str, LABELS["cs"], CZ_CANVAS)]
     if not TEST_MODE:
-        slack_update_canvas(CZ_CANVAS, cz_canvas)
+        results.append(slack_update_canvas(CZ_CANVAS, cz_canvas))
 
-    # English (translate via Claude)
+    # English (translate names via Claude)
     print("--- Translating to English ---")
-    en_message = translate_to_english(cz_message)
-    if en_message.strip().startswith("VALIDATION_FAILED"):
-        print(f"::error::Translator rejected the menu content: {en_message.strip()}")
+    try:
+        en_menus = translate_menus(menus, CLAUDE_API_KEY)
+    except TranslationError as e:
+        print(f"::error::Translator output rejected: {e}")
         sys.exit(1)
-    # Fix the canvas link for English version
-    en_message = en_message.replace(CZ_CANVAS, EN_CANVAS)
-    en_canvas = build_english_canvas(en_message)
+    en_canvas = build_canvas(en_menus, date_str, LABELS["en"])
 
-    slack_post_message(EN_CHANNEL, en_message)
+    results.append(post_menu(EN_CHANNEL, en_menus, date_str, LABELS["en"], EN_CANVAS))
     if not TEST_MODE:
-        slack_update_canvas(EN_CANVAS, en_canvas)
+        results.append(slack_update_canvas(EN_CANVAS, en_canvas))
+
+    if not all(results):
+        print("::error::At least one Slack post or canvas update failed")
+        sys.exit(1)
 
     print("Done!")
 

@@ -8,7 +8,8 @@ Daily lunch menu bot for 6 restaurants near Block Karlín, Prague. Posts to Slac
 GitHub Actions (10:00 CEST, Mon-Fri)
   ├─ fetch_menus.py — scrapes 6 restaurant sources → menus/*.json
   ├─ commits updated JSON files
-  └─ post_menus.py — posts Czech + English (via Claude translation) to Slack
+  └─ post_menus.py — posts Czech + English (dish names translated via Claude) to Slack as table blocks,
+     with a plain-text fallback if Slack rejects the blocks
 ```
 
 ## Restaurants
@@ -26,6 +27,10 @@ GitHub Actions (10:00 CEST, Mon-Fri)
 
 - `fetch_menus.py` — Fetches and parses menus into JSON
 - `post_menus.py` — Posts to Slack channels and updates canvases
+- `menu_format.py` — Slack text and canvas Markdown (tables) builders, CZ/EN labels
+- `menu_translate.py` — Translates dish names to English and validates the reply shape
+- `slack_blocks.py` — Slack `table` block builders and message chunking
+- `spike_table_blocks.py` — One-off script that probes which table block shapes Slack accepts (test channel only)
 - `menus/*.json` — Latest fetched menu data (auto-updated by CI)
 - `.github/workflows/fetch-menus.yml` — GitHub Actions workflow
 
