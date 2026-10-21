@@ -1,0 +1,45 @@
+README.md
+  s_3da2a0a7608a04::t_b381bfd7b1b841 11-12,30-33
+menu_translate.py
+  s_3da2a0a7608a04::t_a9f97e4867310e 1-99
+post_menus.py
+  s_3da2a0a7608a04::t_2960b1e0b5a83b 11-14,61,89-93,97,102-103,109-123,153,158,160,162,164-167,169,171,173-177
+slack_blocks.py
+  s_3da2a0a7608a04::t_9b72e70cbf5e78 1-186
+spike_table_blocks.py
+  s_3da2a0a7608a04::t_c103f2c5e34d8a 1-67
+test_menu_format.py
+  s_3da2a0a7608a04::t_073acf0acb9692 1-62
+test_menu_translate.py
+  s_3da2a0a7608a04::t_bac79c8a83e210 1-105
+test_post_menus.py
+  s_3da2a0a7608a04::t_0127864cec6d03 6,11-13,68-72,82-172
+test_slack_blocks.py
+  s_3da2a0a7608a04::t_2339b3e42bfc72 1-341
+menu_format.py
+  s_b62129c33e32dd::t_f67982afb40aed 1-94
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "4661f3d90eba453dac9e2beb90da6d68093fc226",
+  "prompts": {},
+  "sessions": {
+    "s_3da2a0a7608a04": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5f291e7a-102b-4c57-9ccb-ea1b706a95c1",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Jan Tychtl <jan.tychtl@gooddata.com>"
+    },
+    "s_b62129c33e32dd": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "agent-aaa47d8d7bbd25a95",
+        "model": "unknown"
+      },
+      "human_author": "Jan Tychtl <jan.tychtl@gooddata.com>"
+    }
+  }
+}
