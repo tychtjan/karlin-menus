@@ -16,6 +16,10 @@ def _section(text):
     return {"type": "section", "text": {"type": "mrkdwn", "text": text}}
 
 
+def _header(text):
+    return {"type": "header", "text": {"type": "plain_text", "text": text, "emoji": True}}
+
+
 def _cell(text):
     return {"type": "raw_text", "text": text}
 
@@ -50,20 +54,19 @@ def _per_restaurant_blocks(menus, labels):
     settings = [{"align": "left"}, {"is_wrapped": True}, {"align": "right"}]
     blocks = []
     for menu in menus:
-        title = f'{menu["emoji"]} *{menu["name"]}*'
-        if not menu["data"].get("available"):
-            blocks.append(_section(f'{title}\n{labels["unavailable"]}'))
-            continue
-        blocks.append(_section(title))
-        blocks.append(_table([header, *_menu_rows(menu["data"], labels)], settings))
+        blocks.append(_header(f'{menu["emoji"]} {menu["name"]}'))
+        if menu["data"].get("available"):
+            blocks.append(_table([header, *_menu_rows(menu["data"], labels)], settings))
+        else:
+            blocks.append(_section(labels["unavailable"]))
     return blocks
 
 
 def build_blocks(menus, date_str, labels, canvas_id):
     """Build the full block list: title, restaurant content, canvas footer.
 
-    Each restaurant is a section followed by a table; an unavailable
-    restaurant gets only a section.
+    Each restaurant is a header followed by a table, or by a section saying
+    the menu is unavailable.
     """
     title = _section(f':knife_fork_plate: *{labels["title"]} — {date_str}*')
     link = f'<{CANVAS_URL.format(canvas_id=canvas_id)}|{labels["canvas_link"]}>'
@@ -86,21 +89,13 @@ def _row_count(blocks):
 
 
 def _restaurant_groups(body):
-    """Split blocks into restaurant groups.
-
-    A group is a section block immediately followed by a table block, or any
-    other single block (an unavailable restaurant's lone section).
-    """
+    """Split blocks into restaurant groups: a header block plus the block after it."""
     groups = []
-    i = 0
-    while i < len(body):
-        paired = (
-            body[i]["type"] == "section"
-            and i + 1 < len(body)
-            and body[i + 1]["type"] == "table"
-        )
-        groups.append(body[i : i + 2] if paired else body[i : i + 1])
-        i += 2 if paired else 1
+    for block in body:
+        if block["type"] == "header" or not groups:
+            groups.append([block])
+        else:
+            groups[-1].append(block)
     return groups
 
 

@@ -13,6 +13,7 @@ from fetch_menus import (
     resolve_menu_start,
     sancarlo_image_name,
     select_sancarlo_index,
+    strip_allergens,
     weeks_between,
 )
 
@@ -33,6 +34,42 @@ class TestCollapseWhitespace(unittest.TestCase):
 
     def test_empty_string(self):
         self.assertEqual(collapse_whitespace(""), "")
+
+
+class TestStripAllergens(unittest.TestCase):
+    def test_strips_plain_trailing_codes(self):
+        self.assertEqual(
+            strip_allergens("Grilovaná vepřová panenka, dračí omáčka, rýže 4, 5, 6, 7, 11, 14"),
+            "Grilovaná vepřová panenka, dračí omáčka, rýže",
+        )
+
+    def test_strips_codes_with_letter_suffix(self):
+        self.assertEqual(strip_allergens("Bílá zelňačka s houbami 1a, 7, 9, 12"), "Bílá zelňačka s houbami")
+
+    def test_strips_single_code(self):
+        self.assertEqual(strip_allergens("Salát coleslaw 12"), "Salát coleslaw")
+
+    def test_strips_starred_codes(self):
+        self.assertEqual(strip_allergens("Svíčková na smetaně *1a, 7, 9"), "Svíčková na smetaně")
+
+    def test_keeps_name_without_codes(self):
+        self.assertEqual(strip_allergens("Pizza con funghi"), "Pizza con funghi")
+
+    def test_keeps_volume_suffix(self):
+        self.assertEqual(strip_allergens("Polévka dne 0,33l"), "Polévka dne 0,33l")
+
+    def test_keeps_trailing_numbers_that_are_not_allergen_codes(self):
+        for name in ["Hranolky 150g", "Steak 250", "Menu 2026", "Vitamín B12", "Kuře 1/2",
+                     "Pivo 0,5", "Polévka 0,33", "Menu 123"]:
+            with self.subTest(name=name):
+                self.assertEqual(strip_allergens(name), name)
+
+    def test_strips_space_and_semicolon_separated_codes(self):
+        self.assertEqual(strip_allergens("Kulajda *1a 7 9"), "Kulajda")
+        self.assertEqual(strip_allergens("Řízek 1a; 3; 7"), "Řízek")
+
+    def test_strips_uppercase_sub_codes(self):
+        self.assertEqual(strip_allergens("GULÁŠ 1A, 3, 7"), "GULÁŠ")
 
 
 class TestFetchTankovna(unittest.TestCase):

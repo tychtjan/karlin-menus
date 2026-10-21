@@ -58,5 +58,14 @@ class TestBuildMessage(unittest.TestCase):
         self.assertIn("slack.com/docs/T02G0PHRH/F123|Open in canvas", msg)
 
 
+class TestNullDishes(unittest.TestCase):
+    def test_null_dishes_render_as_no_dishes(self):
+        menu = make_menu(soup="Kulajda")
+        menu["data"]["dishes"] = None
+
+        self.assertIn("Kulajda", format_restaurant_canvas(menu, LABELS["cs"]))
+        self.assertIn("Kulajda", build_message([menu], "21.10.2026", LABELS["cs"], "C1"))
+
+
 if __name__ == "__main__":
     unittest.main()

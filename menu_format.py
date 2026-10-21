@@ -39,7 +39,7 @@ def format_restaurant_mrkdwn(menu, labels):
         price_str = f" • *{soup['price']} {currency}*" if soup.get("price") else ""
         lines.append(f"_{labels['soup']}:_ {soup['name']}{price_str}")
 
-    for i, dish in enumerate(data.get("dishes", []), 1):
+    for i, dish in enumerate(data.get("dishes") or [], 1):
         price_str = f" • *{dish['price']} {currency}*" if dish.get("price") else ""
         lines.append(f"{i}. {dish['name']}{price_str}")
 
@@ -67,7 +67,7 @@ def format_restaurant_canvas(menu, labels):
     soup = data.get("soup")
     if soup:
         lines.append(_table_row(labels["soup"], soup["name"], price(soup)))
-    for i, dish in enumerate(data.get("dishes", []), 1):
+    for i, dish in enumerate(data.get("dishes") or [], 1):
         lines.append(_table_row(i, dish["name"], price(dish)))
 
     return "\n".join(lines)

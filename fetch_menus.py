@@ -24,6 +24,16 @@ def collapse_whitespace(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
+# EU allergen codes 1-14, sub-coded 1a-1e / 8a-8h, optionally led by "*"
+_ALLERGEN = r"(?:1[0-4]|[1-9])[a-hA-H]?"
+ALLERGENS_RE = re.compile(rf"(?:\s+\*?|\s*\*)\s*{_ALLERGEN}(?:(?:\s*[,;]\s*|\s+){_ALLERGEN})*\s*$")
+
+
+def strip_allergens(name: str) -> str:
+    """Remove a trailing allergen code list like "1a, 7, 9" or "*3, 6"."""
+    return ALLERGENS_RE.sub("", name).strip()
+
+
 def fetch_menicka(url: str, restaurant_name: str) -> dict:
     """Fetch and parse a daily menu from menicka.cz."""
     today = date.today()
@@ -99,8 +109,9 @@ def fetch_menicka(url: str, restaurant_name: str) -> dict:
         clean_name = re.sub(r"^\d+\.\s*(?:\d+g\s+)?", "", item_text).strip()
         # Also handle "1. 180g ..." pattern
         clean_name = re.sub(r"^\d+g\s+", "", clean_name).strip()
-        # Remove trailing allergen codes like "*1a, 7, 9" or "*3, 6, 7"
-        clean_name = re.sub(r"\s*\*[\d,a-z\s]+$", "", clean_name).strip()
+        clean_name = strip_allergens(clean_name)
+        if not clean_name:
+            continue
 
         li_classes = " ".join(li.get("class", []))
         if "polevka" in li_classes and soup_item is None:
@@ -151,7 +162,7 @@ def fetch_tankovna() -> dict:
         }
 
     dishes = []
-    for dish in result.get("dishes", []):
+    for dish in result.get("dishes") or []:
         dishes.append({
             "name": collapse_whitespace(dish.get("name", "")).title(),
             "price": dish.get("price"),
@@ -478,7 +489,7 @@ def fetch_sancarlo() -> dict:
         "restaurant": "San Carlo",
         "available": bool(data.get("soup") or data.get("dishes")),
         "soup": data.get("soup"),
-        "dishes": data.get("dishes", []),
+        "dishes": data.get("dishes") or [],
     }
 
 

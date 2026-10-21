@@ -64,12 +64,10 @@ def table_of(blocks):
 
 
 def restaurant_groups(chunk):
-    """(section text, table rows or None) per restaurant section in a chunk."""
+    """(header text, table rows or None) per restaurant header in a chunk."""
     result = []
     for i, block in enumerate(chunk):
-        if block["type"] != "section" or "*" not in block["text"]["text"]:
-            continue
-        if ":knife_fork_plate:" in block["text"]["text"]:
+        if block["type"] != "header":
             continue
         nxt = chunk[i + 1] if i + 1 < len(chunk) else None
         rows = nxt["rows"] if nxt and nxt["type"] == "table" else None
@@ -84,11 +82,11 @@ class TestBuildBlocksPerRestaurant(unittest.TestCase):
 
         blocks = build_blocks(menus, DATE, LABELS_CS, CANVAS_ID)
 
-        self.assertEqual([b["type"] for b in blocks], ["section", "section", "table", "section"])
+        self.assertEqual([b["type"] for b in blocks], ["section", "header", "table", "section"])
         self.assertEqual(blocks[0]["text"]["type"], "mrkdwn")
         self.assertIn(LABELS_CS["title"], blocks[0]["text"]["text"])
         self.assertIn(DATE, blocks[0]["text"]["text"])
-        self.assertEqual(blocks[1]["text"], {"type": "mrkdwn", "text": ":beer: *Pivo*"})
+        self.assertEqual(blocks[1]["text"], {"type": "plain_text", "text": ":beer: Pivo", "emoji": True})
         table = blocks[2]
         self.assertEqual(
             table["column_settings"],
@@ -112,9 +110,9 @@ class TestBuildBlocksPerRestaurant(unittest.TestCase):
         blocks = build_blocks([unavailable_menu("Closed")], DATE, LABELS_EN, CANVAS_ID)
 
         self.assertEqual(table_of(blocks), [])
-        self.assertEqual(
-            blocks[1]["text"]["text"], f":x: *Closed*\n{LABELS_EN['unavailable']}"
-        )
+        self.assertEqual([b["type"] for b in blocks], ["section", "header", "section", "section"])
+        self.assertEqual(blocks[1]["text"]["text"], ":x: Closed")
+        self.assertEqual(blocks[2]["text"]["text"], LABELS_EN["unavailable"])
 
     def test_menu_without_soup_has_no_soup_row(self):
         blocks = build_blocks([make_menu(soup=False, dishes=2)], DATE, LABELS_CS, CANVAS_ID)
@@ -146,7 +144,7 @@ class TestBuildBlocksPerRestaurant(unittest.TestCase):
         blocks = build_blocks(menus, DATE, LABELS_CS, CANVAS_ID)
 
         self.assertEqual(len(table_of(blocks)), 2)
-        self.assertEqual(len(blocks), 7)
+        self.assertEqual(len(blocks), 8)
 
     def test_empty_menu_list_still_has_title_and_footer(self):
         blocks = build_blocks([], DATE, LABELS_CS, CANVAS_ID)
@@ -195,7 +193,7 @@ class TestChunkBlocks(unittest.TestCase):
         chunks = chunk_blocks(blocks, max_table_chars=9000)
 
         seen = [g for chunk in chunks for g in restaurant_groups(chunk)]
-        self.assertEqual([g[0] for g in seen], [f":beer: *R{i}*" for i in range(len(menus))])
+        self.assertEqual([g[0] for g in seen], [f":beer: R{i}" for i in range(len(menus))])
         for text, rows in seen:
             self.assertEqual(rows, original[text])
 
@@ -238,7 +236,7 @@ class TestChunkBlocks(unittest.TestCase):
 
         names = [g[0] for c in chunks for g in restaurant_groups(c)]
         self.assertEqual(len(names), 7)
-        self.assertTrue(any(n.startswith(":x: *Closed*") for n in names))
+        self.assertTrue(any(n == ":x: Closed" for n in names))
 
     def test_oversized_restaurant_is_truncated_not_dropped(self):
         menu = make_menu("Big", dishes=10, dish_len=60)
@@ -300,7 +298,7 @@ class TestBuildBlocksDoesNotMutate(unittest.TestCase):
         first[1]["text"]["text"] = "changed"
         second = build_blocks(menus, DATE, LABELS_CS, CANVAS_ID)
 
-        self.assertEqual(second[1]["text"]["text"], ":beer: *A*")
+        self.assertEqual(second[1]["text"]["text"], ":beer: A")
 
 
 class TestSavedMenus(unittest.TestCase):
