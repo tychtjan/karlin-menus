@@ -8,8 +8,10 @@ from unittest.mock import MagicMock, patch
 from fetch_menus import (
     collapse_whitespace,
     discover_sancarlo_indices,
+    fetch_pivo,
     fetch_tankovna,
     menu_covers_today,
+    parse_pivo_site,
     resolve_menu_start,
     sancarlo_image_name,
     select_sancarlo_index,
@@ -273,6 +275,101 @@ class TestSelectSancarloIndex(unittest.TestCase):
         log = []
         select_sancarlo_index(self._reader(batch, log), list(range(11)), date(2026, 10, 14))
         self.assertEqual(sorted(log), sorted(set(log)))
+
+
+def _pivo_day(heading: str, items: list[tuple[str, str]]) -> str:
+    rows = "".join(
+        '<div class="nectar_food_menu_item"><div class="inner">'
+        f'<div class="item_name"><h4>{name}</h4></div>'
+        f'<div class="item_price"><h4>{price}</h4></div></div></div>'
+        for name, price in items
+    )
+    return f'<div class="vc_column-inner"><div class="wpb_wrapper"><h5>{heading}</h5>{rows}</div></div>'
+
+
+PIVO_SITE_HTML = (
+    "<html><body>"
+    + _pivo_day("26.ŘÍJEN 2026<br />Pondělí", [
+        ("Brokolicový krém s taveným sýrem 1a,7,9", "55,-"),
+        ("180g Medailonky z panenky, smetanová omáčka 1a,3,7,9,12", "275,-"),
+        ("Dýňový cheesecake 1,3,6,7,8", "59,-"),
+    ])
+    + _pivo_day("28.ŘÍJEN 2026<br />Středa\xa0 \xa0STÁTNÍ SVÁTEK", [("", ""), ("", "")])
+    + _pivo_day("29.ŘÍJNA 2026<br />Čtvrtek", [
+        ("Hovězí vývar 1a,9", "55,-"),
+        ("Guláš 1a", "205,-"),
+    ])
+    + _pivo_day("HLAVNÍ JÍDLA", [("Tatarák 3", "395,-")])
+    + "</body></html>"
+).encode("utf-8")
+
+
+class TestParsePivoSite(unittest.TestCase):
+    def test_reads_only_todays_column_with_prices(self):
+        menu = parse_pivo_site(PIVO_SITE_HTML, date(2026, 10, 26))
+
+        self.assertTrue(menu["available"])
+        self.assertEqual(menu["date"], "2026-10-26")
+        self.assertEqual(menu["soup"], {"name": "Brokolicový krém s taveným sýrem", "price": 55})
+        self.assertEqual(menu["dishes"], [
+            {"name": "Medailonky z panenky, smetanová omáčka", "price": 275},
+            {"name": "Dýňový cheesecake", "price": 59},
+        ])
+
+    def test_matches_heading_whatever_the_month_spelling(self):
+        menu = parse_pivo_site(PIVO_SITE_HTML, date(2026, 10, 29))
+
+        self.assertEqual(menu["soup"]["name"], "Hovězí vývar")
+        self.assertEqual(menu["dishes"], [{"name": "Guláš", "price": 205}])
+
+    def test_empty_holiday_column_is_unavailable(self):
+        menu = parse_pivo_site(PIVO_SITE_HTML, date(2026, 10, 28))
+
+        self.assertFalse(menu["available"])
+        self.assertEqual(menu["dishes"], [])
+
+    def test_missing_day_is_unavailable(self):
+        menu = parse_pivo_site(PIVO_SITE_HTML, date(2026, 10, 27))
+
+        self.assertFalse(menu["available"])
+
+    def test_day_number_must_match_not_just_weekday(self):
+        menu = parse_pivo_site(PIVO_SITE_HTML, date(2026, 11, 2))
+
+        self.assertFalse(menu["available"])
+
+
+class TestFetchPivo(unittest.TestCase):
+    MENICKA = {"date": "2026-10-26", "restaurant": "Pivo Karlín", "available": True,
+               "soup": None, "dishes": [{"name": "Z meníček", "price": None}]}
+
+    def _site(self, menu):
+        return patch("fetch_menus.parse_pivo_site", return_value=menu)
+
+    def test_uses_site_menu_when_complete(self):
+        site = parse_pivo_site(PIVO_SITE_HTML, date(2026, 10, 26))
+        with patch("fetch_menus.requests.get"), self._site(site), \
+                patch("fetch_menus.fetch_menicka") as menicka:
+            self.assertEqual(fetch_pivo(), site)
+        menicka.assert_not_called()
+
+    def test_falls_back_to_menicka_when_site_request_fails(self):
+        with patch("fetch_menus.requests.get", side_effect=ConnectionError("down")), \
+                patch("fetch_menus.fetch_menicka", return_value=self.MENICKA):
+            self.assertEqual(fetch_pivo(), self.MENICKA)
+
+    def test_falls_back_to_menicka_when_site_has_no_menu_today(self):
+        empty = {"available": False, "soup": None, "dishes": []}
+        with patch("fetch_menus.requests.get"), self._site(empty), \
+                patch("fetch_menus.fetch_menicka", return_value=self.MENICKA):
+            self.assertEqual(fetch_pivo(), self.MENICKA)
+
+    def test_falls_back_to_menicka_when_a_site_price_is_missing(self):
+        partial = {"available": True, "soup": {"name": "Polévka", "price": 55},
+                   "dishes": [{"name": "Guláš", "price": None}]}
+        with patch("fetch_menus.requests.get"), self._site(partial), \
+                patch("fetch_menus.fetch_menicka", return_value=self.MENICKA):
+            self.assertEqual(fetch_pivo(), self.MENICKA)
 
 
 if __name__ == "__main__":

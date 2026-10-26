@@ -128,6 +128,68 @@ def fetch_menicka(url: str, restaurant_name: str) -> dict:
     }
 
 
+PIVO_SITE_URL = "https://www.pivokarlin.cz/"
+PIVO_MENICKA_URL = "https://www.menicka.cz/6912-pivo-karlin.html"
+
+
+def parse_pivo_site(html: bytes, today: date) -> dict:
+    """Parse today's lunch from pivokarlin.cz.
+
+    Each weekday is its own column headed by a hand-typed <h5> such as
+    "26.ŘÍJEN 2026 Pondělí" (month spelling varies), followed by food items
+    whose first entry is the soup. The à la carte and drinks lists use the
+    same item markup, so only the column under today's heading is read.
+    """
+    page = BeautifulSoup(html, "html.parser")
+    weekday = CZECH_DAYS[today.weekday()]
+    day_re = re.compile(rf"^0?{today.day}\.")
+
+    column = None
+    for h5 in page.find_all("h5"):
+        heading = h5.get_text(" ", strip=True).lower()
+        if day_re.match(heading) and weekday in heading:
+            column = h5.find_parent("div", class_="vc_column-inner")
+            break
+
+    items = []
+    for item in column.find_all("div", class_="nectar_food_menu_item") if column else []:
+        name_el = item.select_one(".item_name h4")
+        price_el = item.select_one(".item_price h4")
+        name = collapse_whitespace(name_el.get_text(" ", strip=True)) if name_el else ""
+        name = strip_allergens(re.sub(r"^\d+\s*g\s+", "", name))
+        if not name:
+            continue
+        digits = re.search(r"\d+", price_el.get_text()) if price_el else None
+        items.append({"name": name, "price": int(digits.group()) if digits else None})
+
+    return {
+        "date": today.isoformat(),
+        "restaurant": "Pivo Karlín",
+        "available": bool(items),
+        "soup": items[0] if items else None,
+        "dishes": items[1:],
+    }
+
+
+def fetch_pivo() -> dict:
+    """Fetch Pivo Karlín from its own site, falling back to menicka.cz.
+
+    The restaurant's site usually carries prices sooner; menicka.cz is used
+    when the site is down, lacks today's column, or is missing any price.
+    """
+    try:
+        resp = requests.get(PIVO_SITE_URL, headers=HEADERS, timeout=15)
+        resp.raise_for_status()
+        menu = parse_pivo_site(resp.content, date.today())
+        items = [menu["soup"], *menu["dishes"]] if menu["available"] else []
+        if items and all(i["price"] is not None for i in items):
+            return menu
+        print("  Pivo Karlín: site menu missing or unpriced, using menicka.cz")
+    except Exception as e:
+        print(f"  Pivo Karlín: site fetch failed ({e}), using menicka.cz")
+    return fetch_menicka(PIVO_MENICKA_URL, "Pivo Karlín")
+
+
 def fetch_tankovna() -> dict:
     """Fetch daily menu from Tankovna Karlín via Sanity CMS API."""
     today = date.today()
@@ -514,7 +576,7 @@ def main():
 
     # Fetch Pivo Karlín
     try:
-        pivo = fetch_menicka("https://www.menicka.cz/6912-pivo-karlin.html", "Pivo Karlín")
+        pivo = fetch_pivo()
         print(f"  Pivo Karlín: {len(pivo['dishes'])} dishes")
     except Exception as e:
         print(f"  Pivo Karlín FAILED: {e}")
