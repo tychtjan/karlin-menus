@@ -1,0 +1,19 @@
+test_fetch_menus.py
+  s_43431c1bf05ef8::t_9cede0796a7fc4 11,14,280-374
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "895418035acdcdc66511056d35fe15143319f219",
+  "prompts": {},
+  "sessions": {
+    "s_43431c1bf05ef8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8430964e-f28b-4905-8131-e30c090f85b9",
+        "model": "unknown"
+      },
+      "human_author": "Jan Tychtl <jan.tychtl@gooddata.com>"
+    }
+  }
+}
